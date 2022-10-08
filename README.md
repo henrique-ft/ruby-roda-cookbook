@@ -1,6 +1,11 @@
 # Ruby Roda Cookbook
-- [Rendering views](#rendering-views)
-- [Rendering JSON](#rendering-json)
+
+<div class="nav">
+  <ul>
+    <li><a href="#rendering-views">Rendering views</a></li>
+    <li><a href="#rendering-json">Rendering JSON</a></li>
+  </ul>
+</div>
 
 ---
 
