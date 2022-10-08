@@ -5,7 +5,7 @@
 <div class="nav">
   <ul>
     <li><a href="#rendering-views">Rendering views</a></li>
-    <li><a href="#rendering-json">Rendering JSON</a></li>
+    <li><a href="#returning-json">Returning JSON</a></li>
     <li><a href="#cors">Cors</a></li>
     <li><a href="#auto-reload">Auto reload</a></li>
     <li><a href="#accessing-through-many-devices">Accessing through many devices</a></li>
@@ -60,7 +60,7 @@ More info:
 
 - [(render plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html)
 
-### Rendering JSON
+### Returning JSON
 
 ```ruby
 class App < Roda                   
