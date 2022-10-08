@@ -1,5 +1,6 @@
 # Ruby Roda Cookbook
 [Rendering views](#rendering-views)
+[Rendering JSON](#rendering-json)
 
 ---
 
@@ -44,6 +45,37 @@ class App < Roda
   end
 end
 ```
+
+more info: 
+
+- [https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html)
+
+### Rendering JSON
+
+```ruby
+class App < Roda                   
+  plugin :json # import json             
+
+  route do |r|                   
+    r.root do                     
+      [{
+        name: 'Banana',
+        nutrients: [
+          {
+            name: 'B vitamin',
+            quantity: 3,
+            quantity_unit: 'mg'
+          }
+        ]
+      }] # automatic conversion to json
+    end   
+  end
+end
+```
+
+more info: 
+
+- [https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html)
 
 # Contributing
 
