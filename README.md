@@ -6,8 +6,10 @@
   <ul>
     <li><a href="#routing">Routing</a></li>
     <li><a href="#rendering-views">Rendering views</a></li>
+    <li><a href="#serving-static-assets">Serving static assets</a></li>
     <li><a href="#returning-json">Returning JSON</a></li>
     <li><a href="#returning-specific-status-code">Returning specific status code</a></li>
+    <li><a href="#halting-requests">Halting requests</a></li>
     <li><a href="#cors">CORS</a></li>
     <li><a href="#auto-reload">Auto reload</a></li>
     <li><a href="#accessing-through-many-devices">Accessing through many devices</a></li>
@@ -84,6 +86,8 @@ More info
 - <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-The+Routing+Tree" target="_blank">"The Routing Tree" section on Roda README</a>
 - <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Matchers" target="_blank">"Matchers" section on Roda README</a>
 - <a href="https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/AllVerbs.html" target="_blank">(all_verbs plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/AllVerbs.html</a>
+- <a href="https://fiachetti.gitlab.io/mastering-roda/#basic-routing" target="_blank">"Basic routing" from "Mastering Roda" book</a>
+- <a href="https://fiachetti.gitlab.io/mastering-roda/#match-methods" target="_blank">"Match methods" from "Mastering Roda" book</a>
 
 ### Rendering views
 
@@ -135,6 +139,24 @@ More info:
 
 - <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Rendering" target="_blank">'Rendering' section on Roda README.md</a>
 - <a href="https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html" target="_blank">(render plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html</a>
+- <a href="https://fiachetti.gitlab.io/mastering-roda/#layouts" target="_blank">"Layouts" from "Mastering Roda" book</a> 
+- <a href="https://fiachetti.gitlab.io/mastering-roda/#render" target="_blank">"Render" from "Mastering Roda" book</a> 
+
+### Serving static assets
+
+```ruby
+class App < Roda
+  plugin :public # Will serve any file / folder in <your_app_root>/public
+
+  route do |r|
+    r.public
+  end
+end
+```
+
+More info:
+
+- <a href="https://fiachetti.gitlab.io/mastering-roda/#public" target="_blank">"Rendering - Public" from "Mastering Roda" book</a> 
 
 ### Returning JSON
 
@@ -236,7 +258,7 @@ use Rack::Cors do
   end
 end
 
-run app.freeze.app
+run App.freeze.app
 ```
 
 More info:
