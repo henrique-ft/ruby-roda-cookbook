@@ -357,7 +357,8 @@ run App.freeze.app
 ```
 More info:
 
-- <a href="https://roda.jeremyevans.net/rdoc/files/doc/conventions_rdoc.html"> "Conventions" section on Roda doc </a>
+- <a href="https://roda.jeremyevans.net/rdoc/files/doc/conventions_rdoc.html" target="_blank"> "Conventions" section on Roda doc </a>
+- <a href="https://github.com/jeremyevans/roda#label-Composition" target="_blank"> "Composition" secion on Roda README</a>
 
 # Contributing
 
