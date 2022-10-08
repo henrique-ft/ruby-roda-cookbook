@@ -6,7 +6,7 @@
   <ul>
     <li><a href="#routing">Routing</a></li>
     <li><a href="#rendering-views">Rendering views</a></li>
-    <li><a href="#serving-static-assets">Serving static assets</a></li>
+    <li><a href="#serving-static-content">Serving static content</a></li>
     <li><a href="#returning-json">Returning JSON</a></li>
     <li><a href="#returning-specific-status-code">Returning specific status code</a></li>
     <li><a href="#halting-requests">Halting requests</a></li>
@@ -16,6 +16,7 @@
     <li><a href="#csrf">CSRF</a></li>
     <li><a href="#cross-site-scripting">Cross Site Scripting (XSS)</a></li>
     <li><a href="#creating-roda-plugins">Creating Roda plugins</a></li>
+    <li><a href="#using-multiple-route-files">Using multiple route files</a></li>
   </ul>
 </div>
 
@@ -142,7 +143,7 @@ More info:
 - <a href="https://fiachetti.gitlab.io/mastering-roda/#layouts" target="_blank">"Layouts" from "Mastering Roda" book</a> 
 - <a href="https://fiachetti.gitlab.io/mastering-roda/#render" target="_blank">"Render" from "Mastering Roda" book</a> 
 
-### Serving static assets
+### Serving static content
 
 ```ruby
 class App < Roda
@@ -306,6 +307,57 @@ and then, access your IP address in port `9292`
 
 - <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-How+to+create+plugins" target="_blank">"How to create plugins" section on Roda README</a>
 - <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Registering+plugins" target="_blank">"Registering plugins" section on Roda README</a>
+
+### Using multiple route files
+
+`routes/foo.rb`
+
+```ruby
+module Routes
+  class Foo < Roda
+    route do |r|
+      r.get do
+        "hello foo"
+      end
+    end
+  end
+end
+```
+
+`routes/bar.rb`
+
+```ruby
+module Routes
+  class Bar < Roda
+    route do |r|
+      r.get do
+        "hello bar"
+      end
+    end
+  end
+end
+```
+`config.ru`
+
+```ruby
+require "roda"
+
+Dir['routes/*.rb'].each { |f| require_relative f }
+
+class App < Roda
+  plugin :multi_run
+
+  run 'foo', Routes::Foo
+  run 'bar', Routes::Bar
+
+  route(&:multi_run)
+end
+
+run App.freeze.app
+```
+More info:
+
+- <a href="https://roda.jeremyevans.net/rdoc/files/doc/conventions_rdoc.html"> "Conventions" section on Roda doc </a>
 
 # Contributing
 
