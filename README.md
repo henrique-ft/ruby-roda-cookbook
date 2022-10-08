@@ -4,6 +4,9 @@
   <ul>
     <li><a href="#rendering-views">Rendering views</a></li>
     <li><a href="#rendering-json">Rendering JSON</a></li>
+    <li><a href="#cors">Cors</a></li>
+    <li><a href="#auto-reload">Auto reload</a></li>
+    <li><a href="#accessing-through-many-devices">Accessing through many devices</a></li>
   </ul>
 </div>
 
@@ -81,6 +84,64 @@ end
 More info: 
 
 - [(json plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html)
+
+### Cors
+
+Use `rack-cors` gem:
+
+```
+gem 'rack-cors' # Gemfile
+```
+
+in `config.ru`:
+
+```ruby
+require "rack/cors"
+
+require_relative "api"
+
+use Rack::Cors do
+  allow do
+    origins '*'
+    resource '*', headers: :any, methods: [:get, :post, :patch, :put]
+  end
+end
+
+run Api.freeze.app
+```
+
+More info:
+
+- [(rack-cors) https://github.com/cyu/rack-cors](https://github.com/cyu/rack-cors)
+
+### Auto reload
+
+Use `rerun` gem:
+
+```
+$ gem install rerun
+```
+
+and then:
+
+```
+$ rerun 'rackup'
+```
+
+More info:
+
+-[(rerun) https://github.com/alexch/rerun](https://github.com/alexch/rerun)
+
+### Accessing through many devices
+
+Run Roda with this command
+
+```
+rackup --host 0.0.0.0 --port 9292
+```
+
+and then, access your IP address in port `9292`
+
 
 # Contributing
 
