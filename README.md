@@ -1,4 +1,6 @@
-# Ruby Roda Cookbook
+![](http://roda.jeremyevans.net/images/roda-logo.svg)
+
+# 📖 Ruby Roda Cookbook
 
 <div class="nav">
   <ul>
@@ -130,7 +132,7 @@ $ rerun 'rackup'
 
 More info:
 
--[(rerun) https://github.com/alexch/rerun](https://github.com/alexch/rerun)
+- [(rerun) https://github.com/alexch/rerun](https://github.com/alexch/rerun)
 
 ### Accessing through many devices
 
