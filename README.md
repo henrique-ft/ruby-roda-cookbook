@@ -1,18 +1,20 @@
 # Ruby Roda Cookbook
 [Rendering views](#rendering-views)
 
-#### Rendering views
+---
+
+### Rendering views
 
 - Create a directory for views named `views` in the root of your project
 
 ```
-mkdir views
+$ mkdir views
 ```
 
 - Create a layout file inside this directory
 
 ```
-touch views/layout.erb
+$ touch views/layout.erb
 ```
 
 ```ruby
@@ -22,7 +24,7 @@ touch views/layout.erb
 - Create the view file
 
 ```
-touch views/foo/index
+$ touch views/foo/index.erb
 ```
 
 ```html
