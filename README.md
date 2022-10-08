@@ -1,18 +1,18 @@
 # Ruby Roda Cookbook
-[Rendering views](#rendering-views)
-[Rendering JSON](#rendering-json)
+- [Rendering views](#rendering-views)
+- [Rendering JSON](#rendering-json)
 
 ---
 
 ### Rendering views
 
-- Create a directory for views named `views` in the root of your project
+Create a directory for views named `views` in the root of your project
 
 ```
 $ mkdir views
 ```
 
-- Create a layout file inside this directory
+Create a layout file inside this directory
 
 ```
 $ touch views/layout.erb
@@ -22,7 +22,7 @@ $ touch views/layout.erb
 <%= yield %>
 ```
 
-- Create the view file
+Create the view file
 
 ```
 $ touch views/foo/index.erb
@@ -32,7 +32,7 @@ $ touch views/foo/index.erb
 <h1> Hello </h1>
 ```
 
-- Add `:render` plugin and `view 'foo/index'`
+Add `:render` plugin and `view 'foo/index'`
 
 ```ruby
 class App < Roda                   
@@ -46,9 +46,9 @@ class App < Roda
 end
 ```
 
-more info: 
+More info: 
 
-- [https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html)
+- [(render plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html)
 
 ### Rendering JSON
 
@@ -73,9 +73,9 @@ class App < Roda
 end
 ```
 
-more info: 
+More info: 
 
-- [https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html)
+- [(json plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html)
 
 # Contributing
 
