@@ -345,11 +345,15 @@ require "roda"
 Dir['routes/*.rb'].each { |f| require_relative f }
 
 class App < Roda
-  plugin :multi_run
+  plugin :multi_run # Allow to group many "r.run" in one call
 
   run 'foo', Routes::Foo
   run 'bar', Routes::Bar
 
+  # Same as
+  # route do |r| 
+  #   r.multi_run
+  # end
   route(&:multi_run)
 end
 
@@ -358,7 +362,7 @@ run App.freeze.app
 More info:
 
 - <a href="https://roda.jeremyevans.net/rdoc/files/doc/conventions_rdoc.html" target="_blank"> "Conventions" section on Roda doc </a>
-- <a href="https://github.com/jeremyevans/roda#label-Composition" target="_blank"> "Composition" secion on Roda README</a>
+- <a href="https://github.com/jeremyevans/roda#label-Composition" target="_blank"> "Composition" section on Roda README</a>
 
 # Contributing
 
