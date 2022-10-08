@@ -81,9 +81,9 @@ end
 ```
 
 More info
-- ["The Routing Tree" section on Roda README](https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-The+Routing+Tree)
-- ["Matchers" section on Roda README](https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Matchers)
-- [(all_verbs plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/AllVerbs.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/AllVerbs.html)
+- <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-The+Routing+Tree" target="_blank">"The Routing Tree" section on Roda README</a>
+- <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Matchers" target="_blank">"Matchers" section on Roda README</a>
+- <a href="https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/AllVerbs.html" target="_blank">(all_verbs plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/AllVerbs.html</a>
 
 ### Rendering views
 
@@ -133,8 +133,8 @@ end
 
 More info: 
 
-- ['Rendering' section on Roda README.md](https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Rendering)
-- [(render plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html)
+- <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Rendering" target="_blank">'Rendering' section on Roda README.md</a>
+- <a href="https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html" target="_blank">(render plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Render.html</a>
 
 ### Returning JSON
 
@@ -161,7 +161,7 @@ end
 
 More info: 
 
-- [(json plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html)
+- <a href="https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html" target="_blank">(json plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Json.html</a>
 
 ### Returning specific status code
 
@@ -179,7 +179,7 @@ end
 
 More info:
 
-- ["Status Codes" section on Roda README](https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Status+Codes)
+- <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Status+Codes" target="_blank">"Status Codes" section on Roda README</a>
 
 ### Halting requests
 
@@ -212,7 +212,7 @@ end
 ```
 
 More info:
-- [(halt plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Halt.html](https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Halt.html)
+- <a href="https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Halt.html" target="_blank">(halt plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Halt.html</a>
 
 ### CORS
 
@@ -241,7 +241,7 @@ run app.freeze.app
 
 More info:
 
-- [(rack-cors) https://github.com/cyu/rack-cors](https://github.com/cyu/rack-cors)
+- <a href="https://github.com/cyu/rack-cors" target="_blank">(rack-cors) https://github.com/cyu/rack-cors</a>
 
 ### Auto reload
 
@@ -259,8 +259,8 @@ $ rerun 'rackup'
 
 More info:
 
-- [(rerun) https://github.com/alexch/rerun](https://github.com/alexch/rerun)
-- ["Code Reloading" section on Roda README](https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Code+Reloading)
+- <a href="https://github.com/alexch/rerun" target="_blank">(rerun) https://github.com/alexch/rerun</a>
+- <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Code+Reloading" target="_blank">"Code Reloading" section on Roda README</a>
 
 ### Accessing through many devices
 
@@ -274,16 +274,16 @@ and then, access your IP address in port `9292`
 
 ### CSRF
 
-["CSRF" section on Roda README](https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Cross+Site+Request+Forgery+-28CSRF-29)
+ <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Cross+Site+Request+Forgery+-28CSRF-29" target="_blank">"CSRF" section on Roda README</a>
 
 ### Cross Site Scripting
 
-["Cross Site Scripting (XSS)" section on Roda README](https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Cross+Site+Scripting+-28XSS-29)
+ <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Cross+Site+Scripting+-28XSS-29" target="_blank">"Cross Site Scripting (XSS)" section on Roda README</a>
 
 ### Creating Roda plugins
 
-- ["How to create plugins" section on Roda README](https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-How+to+create+plugins)
-- ["Registering plugins" section on Roda README](https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Registering+plugins)
+- <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-How+to+create+plugins" target="_blank">"How to create plugins" section on Roda README</a>
+- <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Registering+plugins" target="_blank">"Registering plugins" section on Roda README</a>
 
 # Contributing
 
