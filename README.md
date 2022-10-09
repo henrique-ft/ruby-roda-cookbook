@@ -314,6 +314,8 @@ and then, access your IP address in port `9292`
 
 ### Using multiple route files
 
+#### Option 1
+
 `routes/foo.rb`
 
 ```ruby
@@ -363,10 +365,75 @@ end
 
 run App.freeze.app
 ```
+
+#### Option 2
+
+
+`routes/foo.rb`
+
+```ruby
+module Routes
+  module Foo
+    def self.included(app)   
+      app.class_eval do      
+        route('foo') do |r|
+          r.get do
+            "hello foo, #{@shared_value}"
+          end
+        end
+      end
+    end
+  end
+end
+```
+
+`routes/bar.rb`
+
+```ruby
+module Routes
+  module Bar
+    def self.included(app)   
+      app.class_eval do      
+        route('bar') do |r|
+          r.get do
+            "hello bar, #{@shared_value}"
+          end
+        end
+      end
+    end
+  end
+end
+```
+`config.ru`
+
+```ruby
+require "roda"
+
+Dir['routes/*.rb'].each { |f| require_relative f }
+
+class App < Roda
+  plugin :multi_route # Allow to group many "r.run" in one call
+
+  include Routes::Foo
+  include Routes::Bar
+
+  # route(&:multi_route) 
+  route do |r| 
+     # with this option, keep in mind that all routes will share the same class scope even in separated files
+     # functions defined outside the 'route' block in routes modules may be dangerous
+     @shared_value = 'keep focus'
+     r.multi_route
+  end
+end
+
+run App.freeze.app
+```
+
 More info:
 
 - <a href="https://roda.jeremyevans.net/rdoc/files/doc/conventions_rdoc.html" target="_blank"> "Conventions" section on Roda doc </a>
 - <a href="https://github.com/jeremyevans/roda#label-Composition" target="_blank"> "Composition" section on Roda README</a>
+- <a href="https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/MultiRoute.html" target="_blank">(multi_route plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/MultiRoute.html</a>
 
 # Contributing
 
