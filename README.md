@@ -115,7 +115,8 @@ $ touch views/foo/index.erb
 ```
 
 ```html
-<h1> Hello </h1>
+<h1> Hello, <%= @name %> </h1>
+<%= age %>
 ```
 
 Add `:render` plugin and `view 'foo/index'`
@@ -124,13 +125,15 @@ Add `:render` plugin and `view 'foo/index'`
 class App < Roda                   
   plugin :render # import render             
                                  
-  route do |r|                   
+  route do |r|
+    @name = 'Henrique' # will be available in the erb file
+                   
     r.root do                     
-      view 'foo/index' # this maps to views/food/index.erb  with layout       
+      view 'foo/index', locals: { age: 26 } # this maps to views/food/index.erb  with layout       
     end   
 
     r.get 'without-layout' do                     
-      render 'foo/index' # this maps to views/food/index.erb without layout       
+      render 'foo/index', locals: { age: 26 } # this maps to views/food/index.erb without layout       
     end   
   end
 end
