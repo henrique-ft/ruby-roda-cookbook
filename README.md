@@ -83,7 +83,8 @@ class App < Roda
 end
 ```
 
-More info
+More info:
+
 - <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-The+Routing+Tree" target="_blank">"The Routing Tree" section on Roda README</a>
 - <a href="https://roda.jeremyevans.net/rdoc/files/README_rdoc.html#label-Matchers" target="_blank">"Matchers" section on Roda README</a>
 - <a href="https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/AllVerbs.html" target="_blank">(all_verbs plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/AllVerbs.html</a>
@@ -116,7 +117,7 @@ $ touch views/foo/index.erb
 
 ```html
 <h1> Hello, <%= @name %> </h1>
-<%= age %>
+Age: <%= age %>
 ```
 
 Add `:render` plugin and `view 'foo/index'`
