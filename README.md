@@ -412,7 +412,7 @@ require "roda"
 Dir['routes/*.rb'].each { |f| require_relative f }
 
 class App < Roda
-  plugin :multi_route # Allow to group many "r.run" in one call
+  plugin :multi_route
 
   include Routes::Foo
   include Routes::Bar
