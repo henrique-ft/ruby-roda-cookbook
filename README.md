@@ -17,6 +17,7 @@
     <li><a href="#cross-site-scripting">Cross Site Scripting (XSS)</a></li>
     <li><a href="#creating-roda-plugins">Creating Roda plugins</a></li>
     <li><a href="#using-multiple-route-files">Using multiple route files</a></li>
+    <li><a href="#file-uploads">File uploads</a></li>
   </ul>
 </div>
 
@@ -434,6 +435,10 @@ More info:
 - <a href="https://roda.jeremyevans.net/rdoc/files/doc/conventions_rdoc.html" target="_blank"> "Conventions" section on Roda doc </a>
 - <a href="https://github.com/jeremyevans/roda#label-Composition" target="_blank"> "Composition" section on Roda README</a>
 - <a href="https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/MultiRoute.html" target="_blank">(multi_route plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/MultiRoute.html</a>
+
+### File uploads
+
+Install and use Shrine (<a href="https://shrinerb.com/" target="_blank">https://shrinerb.com/</a>)
 
 # Contributing
 
