@@ -7,6 +7,7 @@
     <li><a href="#routing">Routing</a></li>
     <li><a href="#rendering-views">Rendering views</a></li>
     <li><a href="#serving-static-content">Serving static content</a></li>
+    <li><a href="#compiling-assets">Compiling assets</a></li>
     <li><a href="#returning-json">Returning JSON</a></li>
     <li><a href="#returning-specific-status-code">Returning specific status code</a></li>
     <li><a href="#halting-requests">Halting requests</a></li>
@@ -116,7 +117,7 @@ Create the view file
 $ touch views/foo/index.erb
 ```
 
-```html
+```ruby
 <h1> Hello, <%= @name %> </h1>
 Age: <%= age %>
 ```
@@ -163,6 +164,76 @@ end
 More info:
 
 - <a href="https://fiachetti.gitlab.io/mastering-roda/#public" target="_blank">"Rendering - Public" from "Mastering Roda" book</a> 
+
+### Compiling assets
+
+```ruby
+class App < Roda
+  # some_file.scss is the scss root, the same for some_file.js for javascript
+  # it will find assets/css/some_file.scss and assets/js/some_file.js
+  plugin :assets, css: 'some_file.scss', js: 'some_file.js' # Add this plugin
+
+  route do |r|
+    r.assets # Add this call
+
+    r.get { |r| view 'index' }
+  end
+end
+```
+
+Create the layout file:
+
+`$ mkdir views && touch views/layout.erb`
+
+```ruby
+<html>                 
+  <head>               
+    # The link to files
+    <%= assets(:css) %>
+    <%= assets(:js) %> 
+  </head>              
+                       
+  <body>               
+    <%= yield %>       
+  </body>              
+</html>                
+```
+
+Create the view file:
+
+`$ touch views/index.erb`
+
+```ruby
+<h1> Hello </h1>
+```
+
+Create some scss files:
+
+`$ mkdir assets/css && touch assets/css/some_file.scss`
+
+```css
+@import 'global.scss';
+```
+
+`$ touch assets/css/_global.scss`
+
+```css
+body {                    
+  background-color: blue;
+}                         
+```
+
+Create the js file:
+
+`$ mkdir assets/js && touch assets/js/some_file.js`
+
+```javascript
+console.log("hello")
+```
+
+More info: 
+
+- <a href="https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Assets.html" target="_blank">(assets plugin) https://roda.jeremyevans.net/rdoc/classes/Roda/RodaPlugins/Assets.html</a>
 
 ### Returning JSON
 
