@@ -386,7 +386,40 @@ and then, access your IP address in port `9292`
 
 ### Using multiple route files
 
-#### Option 1
+#### Option 1 (best way)
+
+`routes/foo.rb`
+
+```ruby
+class App                  
+  hash_branch('foo') do |r|
+    r.is do                
+      r.get do             
+        'hello'            
+      end                  
+    end                    
+  end                      
+end                        
+```
+
+`config.ru`
+
+```ruby
+require 'roda'                        
+                                      
+class App < Roda                      
+  # PLUGINS                           
+  #plugin :hash_branch_view_subdir    
+  plugin :autoload_hash_branches      
+  autoload_hash_branch_dir('./routes')
+                                      
+  route(&:hash_branches)              
+end                                   
+                                      
+run App.freeze.app                    
+```
+
+#### Option 2
 
 `routes/foo.rb`
 
@@ -438,8 +471,7 @@ end
 run App.freeze.app
 ```
 
-#### Option 2
-
+#### Option 3
 
 `routes/foo.rb`
 
