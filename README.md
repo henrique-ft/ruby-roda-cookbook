@@ -59,16 +59,14 @@ class App < Roda
   plugin :all_verbs
   
   route do |r|   
-    route do |r|
-      r.delete do
-        # Handle DELETE
-      end
-      r.put do
-        # Handle PUT
-      end
-      r.patch do
-        # Handle PATCH
-      end
+    r.delete do
+      # Handle DELETE
+    end
+    r.put do
+      # Handle PUT
+    end
+    r.patch do
+      # Handle PATCH
     end
   end
 end
