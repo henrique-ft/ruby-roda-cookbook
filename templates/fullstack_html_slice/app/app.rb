@@ -5,7 +5,10 @@ class App < Roda
   autoload_hash_branch_dir('./app/routes')
 
   plugin :json
-  plugin :render, views: 'app/views'
+
+  def render(view_class, **params)
+    view_class.new.to_html(**params)
+  end
 
   plugin :not_found do
     'not found'

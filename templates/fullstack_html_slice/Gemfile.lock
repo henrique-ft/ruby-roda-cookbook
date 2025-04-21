@@ -7,7 +7,7 @@ GEM
     diff-lcs (1.5.1)
     eventmachine (1.2.7)
     ffi (1.17.1-x86_64-linux-gnu)
-    html_slice (0.2.1)
+    html_slice (0.2.2)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -39,7 +39,6 @@ GEM
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
       rack (>= 1, < 3)
-    tilt (2.6.0)
     zeitwerk (2.6.18)
 
 PLATFORMS
@@ -54,7 +53,6 @@ DEPENDENCIES
   sequel
   sqlite3
   thin (~> 1.8, >= 1.8.2)
-  tilt
   zeitwerk
 
 BUNDLED WITH

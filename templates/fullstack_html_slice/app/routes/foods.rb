@@ -5,13 +5,13 @@ class App
     end
 
     r.get 'info' do
-      view('foods/info')
+      Foods::InfoView.new.to_html
     end
 
     r.get do
-      @foods = Food.order(:name).all
-
-      view('foods/index')
+      Foods::IndexView
+        .new(Food.order(:name).all)
+        .to_html
     end
   end
 end
