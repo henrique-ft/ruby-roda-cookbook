@@ -11,5 +11,9 @@ class App < Roda
     'not found'
   end
 
-  route(&:hash_branches)
+  route do |r|
+    r.hash_branches
+
+    r.get { view('hello') }
+  end
 end

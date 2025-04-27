@@ -4,7 +4,7 @@ require 'html_slice'
 require 'sequel'
 require 'roda'
 
-require_relative 'load'
+require_relative 'init'
 
 use Rack::Static, :urls => ["/public"]
 

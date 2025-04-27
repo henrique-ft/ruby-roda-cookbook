@@ -19,4 +19,4 @@ loader.collapse("#{__dir__}/app/services")
 loader.setup
 
 # Init DB Conn
-Config::DB::Conn.init
+DB::Conn.init
