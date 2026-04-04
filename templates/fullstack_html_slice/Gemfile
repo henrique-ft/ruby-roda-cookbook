@@ -3,7 +3,13 @@
 source "https://rubygems.org"
 
 gem 'roda'
-#gem 'thin', '~> 1.8', '>= 1.8.2'
+
+#gem "falcon"
+gem "puma"
+#gem 'iodine'
+#gem 'thin'
+#gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
+
 gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
 gem 'sequel'
 gem 'sqlite3'
@@ -11,7 +17,8 @@ gem 'zeitwerk'
 gem 'html_slice'
 
 group :development do
-  gem 'rerun'
+  gem 'guard-puma'
+  #gem 'rerun'
   gem 'byebug'
   gem 'rspec'
 end
