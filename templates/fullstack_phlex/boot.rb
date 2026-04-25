@@ -10,7 +10,7 @@ loader.push_dir("#{__dir__}/app")
 loader.collapse("#{__dir__}/app/models")
 loader.collapse("#{__dir__}/app/services")
 loader.collapse("#{__dir__}/app/config")
-loader.collapse("#{__dir__}/app/views")
+#loader.collapse("#{__dir__}/app/views")
 
 #[
   #'config',

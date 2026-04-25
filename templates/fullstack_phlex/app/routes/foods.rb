@@ -1,11 +1,12 @@
 class App
   hash_branch('foods') do |r|
     r.get 'api' do
+      x
       { food: 'apple' }
     end
 
     r.get 'info' do
-      ::Views::Foods.info
+      'hi'
     end
 
     r.get do

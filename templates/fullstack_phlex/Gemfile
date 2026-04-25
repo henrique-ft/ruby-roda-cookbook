@@ -5,7 +5,6 @@ source "https://rubygems.org"
 gem 'roda'
 gem 'roda-i18n'
 
-gem 'html_slice'
 gem 'sequel'
 gem 'sqlite3'
 gem 'zeitwerk'

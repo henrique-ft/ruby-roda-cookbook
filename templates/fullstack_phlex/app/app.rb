@@ -1,6 +1,4 @@
 class App < Roda
-  include HtmlSlice
-
   # Routing
   plugin :autoload_hash_branches
   autoload_hash_branch_dir('./app/routes')
@@ -9,6 +7,10 @@ class App < Roda
   # Rendering
   plugin :halt
   plugin :json
+  plugin :exception_page
+  plugin :error_handler do |e|
+    next exception_page(e, css_file: '/public/exception_page.css') if ENV['RACK_ENV'] == 'development'
+  end
   # Request / Response
   plugin :caching
   plugin :cookies
@@ -31,10 +33,6 @@ class App < Roda
   plugin :json_parser
   plugin :sessions, secret: (ENV['SESSION_SECRET'] || 'UAe&&3q8<FQF8HiF)>l0hbPk£vBQ#IrYsoO}14k\l+-/gIU[j}l0hbPk£vBQ#IrY')
   plugin :i18n
-
-  def render(view_class, **params)
-    view_class.new.to_html(**params)
-  end
 
   not_found do
     'not found'
