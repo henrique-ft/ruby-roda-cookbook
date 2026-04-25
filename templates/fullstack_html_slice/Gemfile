@@ -10,7 +10,7 @@ gem "puma"
 #gem 'thin'
 #gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
 
-gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
+#gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
 gem 'sequel'
 gem 'sqlite3'
 gem 'zeitwerk'

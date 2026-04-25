@@ -1,10 +1,14 @@
 class App < Roda
   # PLUGINS
-  #plugin :hash_branch_view_subdir
+
+  # General plugins
   plugin :autoload_hash_branches
   autoload_hash_branch_dir('./app/routes')
-
   plugin :json
+  plugin :json_parser
+  plugin :all_verbs
+  #plugin :common_logger
+  plugin :halt
 
   def render(view_class, **params)
     view_class.new.to_html(**params)

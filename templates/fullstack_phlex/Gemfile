@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem 'roda'
+gem 'roda-i18n'
+
+gem 'html_slice'
+gem 'sequel'
+gem 'sqlite3'
+gem 'zeitwerk'
+
+gem "puma"
+#gem "falcon"
+#gem 'iodine'
+#gem 'thin'
+
+group :development do
+  gem 'guard-puma'
+  gem 'byebug'
+  gem 'rspec'
+end
