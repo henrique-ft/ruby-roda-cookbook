@@ -37,6 +37,10 @@ class App < Roda
   plugin :sessions, secret: (ENV['SESSION_SECRET'] || 'UAe&&3q8<FQF8HiF)>l0hbPk£vBQ#IrYsoO}14k\l+-/gIU[j}l0hbPk£vBQ#IrY')
   plugin :i18n
 
+  def db
+    Deps::DB::Conn.get
+  end
+
   not_found do
     'not found'
   end

@@ -1,9 +1,18 @@
 class App
-  FOODS = Food.order(:name).all
+  #FOODS = Food.order(:name).all
+  FOODS = JSON.parse(File.read('foods'))
 
   hash_branch('foods') do |r|
+    r.get 'count' do
+      { foods: Food.count }
+    end
+
     r.get 'api' do
-      { foods: [] }
+      { foods: Food.select(:name, :protein, :calories, :fat, :carbohydrate).map(&:to_hash) }
+    end
+
+    r.get 'api-all' do
+      { foods: Food.all.map(&:to_hash) }
     end
 
     r.get 'api-10' do
@@ -24,10 +33,6 @@ class App
 
     r.get 'info' do
       view('foods/info')
-    end
-
-    r.get do
-      Food.order(:name).all.map(&:to_hash)
     end
   end
 end
