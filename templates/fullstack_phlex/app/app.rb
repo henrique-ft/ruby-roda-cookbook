@@ -1,10 +1,13 @@
 class App < Roda
   # Routing
+  #plugin :hash_branch_view_subdir
   plugin :autoload_hash_branches
   autoload_hash_branch_dir('./app/routes')
   plugin :all_verbs
   plugin :not_found
   # Rendering
+  plugin :partials, views: 'app/views'
+  plugin :content_for, append: false
   plugin :halt
   plugin :json
   plugin :exception_page
@@ -15,15 +18,15 @@ class App < Roda
   plugin :caching
   plugin :cookies
   plugin :content_security_policy do |csp|
-    csp.default_src :none
-    csp.img_src :self
-    csp.style_src :self
-    csp.script_src :self
-    csp.font_src :self
-    csp.form_action :self
-    csp.base_uri :none
-    csp.frame_ancestors :none
-    csp.block_all_mixed_content
+    #csp.default_src :none
+    #csp.img_src :self
+    #csp.style_src :self
+    #csp.script_src :self
+    #csp.font_src :self
+    #csp.form_action :self
+    #csp.base_uri :none
+    #csp.frame_ancestors :none
+    #csp.block_all_mixed_content
   end
   # CSRF Protection
   plugin :route_csrf
