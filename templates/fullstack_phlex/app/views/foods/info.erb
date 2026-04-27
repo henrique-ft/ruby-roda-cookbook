@@ -1,5 +1,5 @@
 <h1>hi</h1>
 
-<% FOODS.each do |food| %>
-  <%= food.name %>
+<% App::FOODS.first(22).each do |food| %>
+  <%= food %>
 <% end %>
