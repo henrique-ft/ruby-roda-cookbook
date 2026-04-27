@@ -1,8 +1,0 @@
-development:
-  host: 'localhost'
-  user: 'dev'
-  password: 'dev'
-  name: 'app_development'
-
-production:
-  url: <%= ENV['APP_DATABASE_URL'] %>

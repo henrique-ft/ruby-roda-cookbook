@@ -1,4 +1,3 @@
 #!/bin/sh
 
-# sequel -m db/migrations sqlite://db/development.db
-sequel -m db/migrations postgres://dev:dev@localhost:5432/app_development
+sequel -m db/migrations sqlite://db/${RACK_ENV}.db

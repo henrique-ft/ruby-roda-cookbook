@@ -3,23 +3,19 @@
 source "https://rubygems.org"
 
 gem 'roda'
-
-#gem "falcon"
-gem "puma"
-#gem 'iodine'
-#gem 'thin'
-#gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
+gem 'roda-i18n'
 
 gem 'sequel'
-gem 'pg'
-gem 'tilt'
 gem 'sqlite3'
 gem 'zeitwerk'
-gem 'html_slice'
+
+gem "puma"
+#gem "falcon"
+#gem 'iodine'
+#gem 'thin'
 
 group :development do
   gem 'guard-puma'
-  #gem 'rerun'
   gem 'byebug'
   gem 'rspec'
 end

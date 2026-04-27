@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ -z "$RODA_WATCH" ]; then
-  RACK_ENV=development bundle exec guard
-else
-  RACK_ENV=development bundle exec puma
-fi
