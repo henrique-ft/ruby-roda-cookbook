@@ -1,7 +1,7 @@
 require 'bundler/setup'
 Bundler.require
 
-require 'byebug' if ENV['RACK_ENV'] != 'production'
+#require 'byebug' if ENV['RACK_ENV'] != 'production'
 
 # Config file loads
 loader = Zeitwerk::Loader.new

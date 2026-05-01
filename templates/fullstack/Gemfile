@@ -7,8 +7,10 @@ gem 'roda-i18n'
 
 gem 'async'
 gem 'sequel'
-gem 'sqlite3'
+#gem 'sqlite3'
+gem 'jdbc-sqlite3'
 gem 'zeitwerk'
+gem 'ostruct'
 
 gem "puma"
 #gem "falcon"
@@ -17,6 +19,7 @@ gem "puma"
 
 group :development do
   gem 'guard-puma'
-  gem 'byebug'
+  #gem 'byebug'
+  gem 'pry'
   gem 'rspec'
 end

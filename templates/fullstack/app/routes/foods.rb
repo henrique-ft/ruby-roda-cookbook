@@ -13,10 +13,11 @@ class App
 
   hash_branch('foods') do |r|
     r.get 'api-cpu' do
-      foods = db[:foods].select(:name, :protein, :calories, :fat, :carbohydrate)
+      foods = db[:foods].select(:name, :protein, :calories, :fat, :carbohydrate).first
 
       ticks = []
-      #(1..2).each do
+      n = 0
+      while n <= 10 do
         i = 0.0
         while i <= 90 do
           tick = {time: i, goal: false}
@@ -25,12 +26,17 @@ class App
           if rand > 0.2 && rand < 0.8 && rand && rand
             tick[:goal] = true
           end
-          i = i+0.5
+          tick[:name1] = foods[:name]
+          tick[:description_code] = foods[:fat]
+          tick[:name2] = foods[:name]
+          i = i+1
           ticks.push(tick)
         end
-        #ticks = []
-      #end
-      { ticks: ticks }
+        n = n+1
+      end
+
+      #{ ticks: [] }
+      { ticks: }
     end
 
     r.get 'count' do
