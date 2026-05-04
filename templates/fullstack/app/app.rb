@@ -41,6 +41,12 @@ class App < Roda
     Deps::DB::Conn.get
   end
 
+  def cpu_heavy_fib(n)
+    return n if n <= 1
+
+    cpu_heavy_fib(n - 1) + cpu_heavy_fib(n - 2)
+  end
+
   not_found do
     'not found'
   end
@@ -49,7 +55,9 @@ class App < Roda
     r.hash_branches
 
     r.root do
-      t.hello.message
+      cpu_heavy_fib(30)
+
+      "hello world"
     end
   end
 end

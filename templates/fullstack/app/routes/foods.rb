@@ -1,8 +1,8 @@
 require 'async'
 
 class App
-  #FOODS = Food.order(:name).all
-  FOODS = JSON.parse(File.read('foods'))
+  FOODS = Food.order(:name).all
+  #FOODS = JSON.parse(File.read('foods'))
   MAP = {
     [5,1] => {}, [5,2] => {}, [5,3] => {}, [5,4] => {}, [5,5] => {},
     [4,1] => {}, [4,2] => {}, [4,3] => {}, [4,4] => {}, [4,5] => {},
@@ -12,6 +12,43 @@ class App
   }
 
   hash_branch('foods') do |r|
+    r.get 'average-request' do
+      x = Food.select(:name, :protein, :calories, :fat, :carbohydrate, :fiber)
+      y = Food.select(:name, :protein, :calories, :fat, :carbohydrate, :fiber)
+      @foods = Food.select(:name, :protein, :calories, :fat, :carbohydrate, :fiber).map(&:to_hash)
+      i = 0
+      while i <= 10 do
+        if i > 0 && i < 20
+          @foods[i][:fat] = rand(1..5)
+          @foods[i][:protein] = rand(1..5)
+          @foods[i][:fiber] = rand(1..5)
+        end
+
+        i += 1
+      end
+
+      view('foods/info')
+    end
+
+    r.get 'average-request-inertia' do
+      x = Food.select(:name, :protein, :calories, :fat, :carbohydrate, :fiber)
+      y = Food.select(:name, :protein, :calories, :fat, :carbohydrate, :fiber)
+      @foods = Food.select(:name, :protein, :calories, :fat, :carbohydrate, :fiber).map(&:to_hash)
+
+      i = 0
+      while i <= 10 do
+        if i > 0 && i < 20
+          @foods[i][:fat] = rand(1..5)
+          @foods[i][:protein] = rand(1..5)
+          @foods[i][:fiber] = rand(1..5)
+        end
+
+        i += 1
+      end
+
+      view('foods/info_2')
+    end
+
     r.get 'api-cpu' do
       foods = db[:foods].select(:name, :protein, :calories, :fat, :carbohydrate).first
 
@@ -20,7 +57,7 @@ class App
       while n <= 10 do
         i = 0.0
         while i <= 90 do
-          tick = {time: i, goal: false}
+          tick = { time: i, goal: false }
           tick[:ball_position] = [rand(1..5), rand(1..5)]
           MAP[[:ball_position]]
           if rand > 0.2 && rand < 0.8 && rand && rand
@@ -82,6 +119,7 @@ class App
     end
 
     r.get 'info' do
+      @foods = App::FOODS
       view('foods/info')
     end
   end

@@ -5,10 +5,11 @@ source "https://rubygems.org"
 gem 'roda'
 gem 'roda-i18n'
 
+gem 'oj'
 gem 'async'
 gem 'sequel'
-#gem 'sqlite3'
-gem 'jdbc-sqlite3'
+gem 'sqlite3'
+#gem 'jdbc-sqlite3'
 gem 'zeitwerk'
 gem 'ostruct'
 

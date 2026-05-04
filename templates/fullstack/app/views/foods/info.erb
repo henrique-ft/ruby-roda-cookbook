@@ -1,5 +1,22 @@
 <h1>hi</h1>
 
-<% App::FOODS.first(22).each do |food| %>
-  <%= food %>
+<%# @foods.first(22).each do |food| %>
+  <%#= food %>
+<%# end %>
+
+<%# Food.order(:name).select(:name, :protein, :calories, :fat, :carbohydrate).each do |food| %>
+  <%#= food[:name] %>
+<%# end %>
+
+<%# @foods.each do |food| %>
+  <%#= food[:name] %>
+<%# end %>
+
+<% @foods.each do |food| %>
+  <%= food[:name] %>,
+  <%= food[:protein] %>,
+  <%= food[:calories] %>,
+  <%= food[:fat] %>,
+  <%= food[:carbohydrate] %>,
+  <%= food[:fiber] %>,
 <% end %>

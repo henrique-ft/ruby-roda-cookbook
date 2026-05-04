@@ -23,5 +23,7 @@ loader.collapse("#{__dir__}/app/config")
 #end
 loader.setup
 
+Oj.mimic_JSON()
+
 # Init DB Conn
 Deps::DB::Conn.init
