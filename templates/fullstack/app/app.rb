@@ -32,22 +32,19 @@ class App < Roda
   plugin :flash
   plugin :json_parser
   plugin :sessions, secret: Config.get[:secret]
-  plugin :i18n
+  plugin :i18n, translations: Config.get[:i18n][:translations]
 
   def db = config[:deps][:db]
-  def deps = config[:deps]
   def config = Config.get
 
   route do |r|
     r.hash_branches
 
-    r.root do
-      "hello world"
-    end
+    r.root { t.hello.message }
   end
 
   error do |e|
-    next exception_page(e, css_file: '/public/exception_page.css') if ENV['RACK_ENV'] == 'development'
+    next exception_page(e, css_file: '/public/exception_page.css') if config[:environment] == 'development'
   end
 
   not_found do

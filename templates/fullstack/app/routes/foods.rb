@@ -12,6 +12,7 @@ class App
 
     r.get 'info' do
       @foods = Food.all
+
       view('foods/info')
     end
   end
