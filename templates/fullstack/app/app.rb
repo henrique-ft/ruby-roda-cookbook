@@ -14,6 +14,7 @@ class App < Roda
   # Request / Response
   plugin :caching
   plugin :cookies
+  plugin :default_headers
   plugin :content_security_policy do |csp|
     #csp.default_src :none
     #csp.img_src :self
