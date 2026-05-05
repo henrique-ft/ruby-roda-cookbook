@@ -1,9 +1,9 @@
 module Deps
   module DB
     class Conn
-      def self.init
-        #@conn = Sequel.connect("jdbc:sqlite:db/#{ENV['RACK_ENV'] || 'development'}.db")
-        @conn = Sequel.connect("sqlite://db/#{ENV['RACK_ENV'] || 'development'}.db")
+      def self.boot
+        #@conn = Sequel.connect("jdbc:sqlite:db/#{Config.get[:environment]}.db")
+        @conn = Sequel.connect("sqlite://db/#{Config.get[:environment]}.db")
 
         Sequel::Model.plugin :timestamps, update_on_create: true
       end

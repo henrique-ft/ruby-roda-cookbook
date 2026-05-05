@@ -11,9 +11,6 @@ class App < Roda
   plugin :halt
   plugin :json
   plugin :exception_page
-  plugin :error_handler do |e|
-    next exception_page(e, css_file: '/public/exception_page.css') if ENV['RACK_ENV'] == 'development'
-  end
   # Request / Response
   plugin :caching
   plugin :cookies
@@ -34,30 +31,26 @@ class App < Roda
   plugin :common_logger
   plugin :flash
   plugin :json_parser
-  plugin :sessions, secret: (ENV['SESSION_SECRET'] || 'UAe&&3q8<FQF8HiF)>l0hbPk£vBQ#IrYsoO}14k\l+-/gIU[j}l0hbPk£vBQ#IrY')
+  plugin :sessions, secret: Config.get[:secret]
   plugin :i18n
 
-  def db
-    Deps::DB::Conn.get
-  end
-
-  def cpu_heavy_fib(n)
-    return n if n <= 1
-
-    cpu_heavy_fib(n - 1) + cpu_heavy_fib(n - 2)
-  end
-
-  not_found do
-    'not found'
-  end
+  def db = config[:deps][:db]
+  def deps = config[:deps]
+  def config = Config.get
 
   route do |r|
     r.hash_branches
 
     r.root do
-      cpu_heavy_fib(30)
-
       "hello world"
     end
+  end
+
+  error do |e|
+    next exception_page(e, css_file: '/public/exception_page.css') if ENV['RACK_ENV'] == 'development'
+  end
+
+  not_found do
+    'not found'
   end
 end
