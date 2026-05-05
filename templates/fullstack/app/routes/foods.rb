@@ -1,5 +1,3 @@
-require 'async'
-
 class App
   hash_branch('foods') do |r|
     r.get 'api' do
@@ -11,7 +9,7 @@ class App
     end
 
     r.get 'info' do
-      @foods = Food.all
+      @foods = Food.first(10)
 
       view('foods/info')
     end
