@@ -1,1 +1,3 @@
+#!/bin/sh
+
 RACK_ENV=production bundle exec puma --port 4000 -t 0:3

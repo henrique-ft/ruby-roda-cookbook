@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ -z "$RODA_WATCH" ]; then
   RACK_ENV=development bundle exec guard
