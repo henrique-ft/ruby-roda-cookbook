@@ -1,5 +1,6 @@
+# managerc.io / roda-kit
 class App
-  hash_branch('foods') do |r|
+  branch 'foods' do |r|
     r.get 'api' do
       { foods: Food.select(:name, :protein, :calories, :fat, :carbohydrate, :fiber).map(&:to_hash) }
     end
@@ -9,7 +10,7 @@ class App
     end
 
     r.get 'info' do
-      @foods = Food.first(10)
+      @foods = Food.all
 
       view('foods/info')
     end

@@ -37,6 +37,7 @@ class App < Roda
 
   def db = config[:deps][:db]
   def config = Config.get
+  def self.branch(args, &) = hash_branch(args, &)
 
   route do |r|
     r.hash_branches
