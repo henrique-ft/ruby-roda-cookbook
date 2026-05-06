@@ -1,4 +1,3 @@
-# managerc.io / roda-kit
 class App
   branch 'foods' do |r|
     r.get 'api' do

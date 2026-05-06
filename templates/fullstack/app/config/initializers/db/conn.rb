@@ -1,7 +1,7 @@
-module Deps
+module Initializers
   module DB
     class Conn
-      def self.boot
+      def self.init
         #@conn = Sequel.connect("jdbc:sqlite:db/#{Config.get[:environment]}.db")
         @conn = Sequel.connect("sqlite://db/#{Config.get[:environment]}.db")
 

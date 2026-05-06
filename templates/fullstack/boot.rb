@@ -26,4 +26,4 @@ loader.setup
 Oj.mimic_JSON()
 
 # Deps
-Deps::DB::Conn.boot
+Initializers::DB::Conn.init
