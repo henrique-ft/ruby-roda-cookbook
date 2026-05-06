@@ -1,1 +1,1 @@
-require_relative '../load'
+require_relative '../boot'

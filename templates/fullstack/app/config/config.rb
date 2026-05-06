@@ -1,10 +1,16 @@
 module Config
-  def self.get
-    {
-      secret: (ENV['SESSION_SECRET'] || 'UAe&&3q8<FQF8HiF)>l0hbPk£vBQ#IrYsoO}14k\l+-/gIU[j}l0hbPk£vBQ#IrY'),
-      environment: ENV['RACK_ENV'] || 'development',
-      i18n: { translations: ['app/config/locales'] },
-      db: Initializers::DB::Conn.get
-    }
+  class << self
+    def get
+      {
+        secret: (ENV['SESSION_SECRET'] || 'UAe&&3q8<FQF8HiF)>l0hbPk£vBQ#IrYsoO}14k\l+-/gIU[j}l0hbPk£vBQ#IrY'),
+        environment:,
+        i18n: { translations: ['app/config/locales'] },
+        db: Initializers::DB::Conn.get
+      }
+    end
+
+    def environment
+      ENV['RACK_ENV'] || 'development'
+    end
   end
 end

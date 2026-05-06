@@ -9,7 +9,7 @@ class App
     end
 
     r.get 'info' do
-      @foods = Food.all
+      @foods = Food.select(:name, :protein, :calories, :fat, :carbohydrate, :fiber)
 
       view('foods/info')
     end
