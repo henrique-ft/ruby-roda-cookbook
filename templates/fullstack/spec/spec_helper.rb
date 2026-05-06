@@ -1,1 +1,31 @@
 require_relative "../boot"
+require 'rack/test'
+require "minitest/autorun"
+require 'minitest/hooks/default'
+
+DB = Config.get[:db][:conn]
+
+class Minitest::HooksSpec
+  include Rack::Test::Methods
+
+  def app
+    App.freeze.app
+  end
+end
+
+class Minitest::HooksSpec
+  around(:all) do |&block|
+    DB.transaction(rollback: :always){super(&block)}
+  end
+
+  around do |&block|
+    DB.transaction(rollback: :always, savepoint: true, auto_savepoint: true){super(&block)}
+  end
+
+  def log
+    LOGGER.level = Logger::INFO
+    yield
+  ensure
+    LOGGER.level = Logger::FATAL
+  end
+end

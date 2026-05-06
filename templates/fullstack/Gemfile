@@ -28,5 +28,7 @@ group :development do
   gem "debug"
   # gem "pry"
   gem "standard"
-  gem "sequel-annotate"
+  gem "minitest"
+  gem "minitest-hooks"
+  gem "rack-test"
 end
