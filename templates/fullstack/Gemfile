@@ -25,7 +25,8 @@ gem "oj"
 
 group :development do
   gem "guard-puma"
-  # gem 'byebug'
-  gem "pry"
+  gem "debug"
+  # gem "pry"
   gem "standard"
+  gem "sequel-annotate"
 end

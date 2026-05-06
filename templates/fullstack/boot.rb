@@ -22,6 +22,7 @@ loader.collapse("#{__dir__}/app/config")
 # loader.push_dir("#{__dir__}/app/#{path}")
 # end
 loader.setup
+require "debug" if Config.not_production?
 
 Oj.mimic_JSON
 

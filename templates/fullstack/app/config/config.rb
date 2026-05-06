@@ -5,9 +5,14 @@ module Config
         secret: ENV["SESSION_SECRET"] || 'UAe&&3q8<FQF8HiF)>l0hbPk£vBQ#IrYsoO}14k\l+-/gIU[j}l0hbPk£vBQ#IrY',
         environment:,
         i18n: {translations: ["app/config/locales"]},
-        db: Initializers::DB::Conn.get
+        db: {
+          conn: Initializers::DB::Conn.get,
+          name: "app"
+        }
       }
     end
+
+    def not_production? = environment != "production"
 
     def environment
       ENV["RACK_ENV"] || "development"

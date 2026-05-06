@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require_relative "../boot"
+
+db = Initializers::DB::Conn.get
+if db.database_type != :sqlite
+  db.run("CREATE DATABASE #{Config.get[:db][:name]}_#{Config.get[:environment]}")
+end
