@@ -15,7 +15,7 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-guard 'puma' do
-  watch('Gemfile.lock')
+guard "puma" do
+  watch("Gemfile.lock")
   watch(%r{^app|i18n|public/.*})
 end

@@ -40,8 +40,8 @@ Sequel.migration do
       Float :selenium
       Float :water
 
-      String :created_at, :null=>false
-      String :updated_at, :null=>false
+      String :created_at, null: false
+      String :updated_at, null: false
     end
 
     # food reports
@@ -50,8 +50,8 @@ Sequel.migration do
 
       String :description
 
-      String :created_at, :null=>false
-      String :updated_at, :null=>false
+      String :created_at, null: false
+      String :updated_at, null: false
     end
   end
 end

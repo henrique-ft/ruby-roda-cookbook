@@ -1,7 +1,7 @@
-require 'bundler/setup'
+require "bundler/setup"
 Bundler.require
 
-#require 'byebug' if ENV['RACK_ENV'] != 'production'
+# require 'byebug' if ENV['RACK_ENV'] != 'production'
 
 # Config file loads
 loader = Zeitwerk::Loader.new
@@ -10,20 +10,20 @@ loader.push_dir("#{__dir__}/app")
 loader.collapse("#{__dir__}/app/models")
 loader.collapse("#{__dir__}/app/services")
 loader.collapse("#{__dir__}/app/config")
-#loader.collapse("#{__dir__}/app/views")
+# loader.collapse("#{__dir__}/app/views")
 
-#[
-  #'config',
-  #'models',
-  #'services',
-  #'callbacks',
-  #'actions'
-#].each do |path|
-  #loader.push_dir("#{__dir__}/app/#{path}")
-#end
+# [
+# 'config',
+# 'models',
+# 'services',
+# 'callbacks',
+# 'actions'
+# ].each do |path|
+# loader.push_dir("#{__dir__}/app/#{path}")
+# end
 loader.setup
 
-Oj.mimic_JSON()
+Oj.mimic_JSON
 
 # Deps
 Initializers::DB::Conn.init

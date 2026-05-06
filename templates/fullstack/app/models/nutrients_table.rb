@@ -1,7 +1,7 @@
 class NutrientsTable
   def initialize
     @table =
-      Food::NUTRIENTS.map { |nutrient| { nutrient.to_sym => 0 } }.inject(:merge)
+      Food::NUTRIENTS.map { |nutrient| {nutrient.to_sym => 0} }.inject(:merge)
   end
 
   def add(values_hash)

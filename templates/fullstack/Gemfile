@@ -3,29 +3,29 @@
 source "https://rubygems.org"
 
 # Base
-gem 'roda'
-gem 'roda-i18n'
-gem 'zeitwerk'
+gem "roda"
+gem "roda-i18n"
+gem "zeitwerk"
 
 # Database
-gem 'sequel'
-gem 'sqlite3'
-#gem 'jdbc-sqlite3'
+gem "sequel"
+gem "sqlite3"
+# gem 'jdbc-sqlite3'
 
 # Web Server
 gem "puma"
-#gem "falcon"
-#gem 'iodine'
-#gem 'thin'
+# gem "falcon"
+# gem 'iodine'
+# gem 'thin'
 
 # Performance
-gem 'oj'
-#gem 'sequel_pg'
-#gem 'async'
+gem "oj"
+# gem 'sequel_pg'
+# gem 'async'
 
 group :development do
-  gem 'guard-puma'
-  #gem 'byebug'
-  gem 'pry'
-  gem 'rspec'
+  gem "guard-puma"
+  # gem 'byebug'
+  gem "pry"
+  gem "standard"
 end

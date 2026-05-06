@@ -1,5 +1,5 @@
-require_relative 'boot'
+require_relative "boot"
 
-use Rack::Static, :urls => ["/public"]
+use Rack::Static, urls: ["/public"]
 
 run App

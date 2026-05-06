@@ -1,12 +1,12 @@
 class App < Roda
   # Routing
-  #plugin :hash_branch_view_subdir
+  # plugin :hash_branch_view_subdir
   plugin :autoload_hash_branches
-  autoload_hash_branch_dir('./app/routes')
+  autoload_hash_branch_dir("./app/routes")
   plugin :all_verbs
   plugin :not_found
   # Rendering
-  plugin :partials, views: 'app/views'
+  plugin :partials, views: "app/views"
   plugin :content_for, append: false
   plugin :halt
   plugin :json
@@ -16,15 +16,15 @@ class App < Roda
   plugin :cookies
   plugin :default_headers
   plugin :content_security_policy do |csp|
-    #csp.default_src :none
-    #csp.img_src :self
-    #csp.style_src :self
-    #csp.script_src :self
-    #csp.font_src :self
-    #csp.form_action :self
-    #csp.base_uri :none
-    #csp.frame_ancestors :none
-    #csp.block_all_mixed_content
+    # csp.default_src :none
+    # csp.img_src :self
+    # csp.style_src :self
+    # csp.script_src :self
+    # csp.font_src :self
+    # csp.form_action :self
+    # csp.base_uri :none
+    # csp.frame_ancestors :none
+    # csp.block_all_mixed_content
   end
   # CSRF Protection
   plugin :route_csrf
@@ -46,10 +46,10 @@ class App < Roda
   end
 
   error do |e|
-    next exception_page(e, css_file: '/public/exception_page.css') if config[:environment] == 'development'
+    next exception_page(e, css_file: "/public/exception_page.css") if config[:environment] == "development"
   end
 
   not_found do
-    'not found'
+    "not found"
   end
 end
