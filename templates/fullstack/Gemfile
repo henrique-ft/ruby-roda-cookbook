@@ -23,6 +23,9 @@ gem "oj"
 # gem 'sequel_pg'
 # gem 'async'
 
+# Misc
+gem 'html_slice'
+
 group :development do
   gem "guard-puma"
   gem "debug"

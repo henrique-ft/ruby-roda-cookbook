@@ -36,7 +36,8 @@ class App < Roda
   plugin :i18n, translations: Config.get[:i18n][:translations]
 
   def db = config[:deps][:db]
-  def config = Config.get
+  def config = @config ||= Config.get
+  def html = @html ||= Shared::Html.new
   def self.branch(args, &) = hash_branch(args, &)
 
   route do |r|

@@ -8,11 +8,42 @@ body {
     </style>
   </head>
   <body>
-    <%= partial 'shared/navbar' %>
-
     <%= yield %>
-    <%= partial 'shared/navbar' %>
-    <%= partial 'shared/navbar' %>
-    <%= partial 'shared/navbar' %>
+
+    <!-- this is slow -->
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+    <%#= partial 'shared/hello' %>
+
+    <!-- this is 35% faster -->
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
+    <%= html.hello %>
   </body>
 </html>
