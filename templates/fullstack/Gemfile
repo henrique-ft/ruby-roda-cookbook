@@ -25,6 +25,7 @@ gem "oj"
 
 # Misc
 gem 'html_slice'
+gem 'singleton'
 
 group :development do
   gem "guard-puma"

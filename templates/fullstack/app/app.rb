@@ -37,7 +37,7 @@ class App < Roda
 
   def db = config[:deps][:db]
   def config = @config ||= Config.get
-  def html = @html ||= Shared::Html.new
+  def html = @html ||= Views::Html.instance
   def self.branch(args, &) = hash_branch(args, &)
 
   route do |r|

@@ -137,6 +137,7 @@ GEM
     sequel (5.103.0)
       bigdecimal
     shellany (0.0.1)
+    singleton (0.3.0)
     spoon (0.0.6)
       ffi
     sqlite3 (2.8.1)
@@ -181,6 +182,7 @@ DEPENDENCIES
   roda
   roda-i18n
   sequel
+  singleton
   sqlite3
   standard
   zeitwerk
