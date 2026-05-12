@@ -10,9 +10,9 @@ module Views
       @foods = Views::Foods::Html.new
     end
 
-    def hello
+    def hello(t)
       html_slice do
-        tag(:p, "hello")
+        tag(:p, t.hello.message)
       end
     end
   end

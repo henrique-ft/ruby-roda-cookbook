@@ -28,6 +28,12 @@ class App < Roda
   end
   # CSRF Protection
   plugin :route_csrf
+  # Other
+  plugin :common_logger
+  plugin :flash
+  plugin :json_parser
+  plugin :sessions, secret: Config.get[:secret]
+  plugin :i18n, **Config.get[:i18n]
   # Authentication
   plugin :rodauth do
     enable :login, :logout, :create_account, :verify_account
@@ -36,17 +42,13 @@ class App < Roda
     accounts_table :accounts
     password_hash_table :account_password_hashes
     use_database_authentication_functions? false
-    login_column :email
     # base_url "http://localhost:9292"
+    login_column :email
+    # Redirect logged in users to the wherever login redirects to
+    already_logged_in { redirect "/" }
 
     hmac_secret ENV["RODAUTH_HMAC_SECRET"]
   end
-  # Other
-  plugin :common_logger
-  plugin :flash
-  plugin :json_parser
-  plugin :sessions, secret: Config.get[:secret]
-  plugin :i18n, translations: Config.get[:i18n][:translations]
 
   def config = @config ||= Config.get
   def html = @html ||= Views::Html.instance
@@ -55,6 +57,10 @@ class App < Roda
   route do |r|
     r.rodauth
     r.hash_branches
+    #session[:locale] = 'pt-br'
+
+    #r.i18n_set_locale_from(:session)
+
     rodauth.require_authentication
 
     r.root do
