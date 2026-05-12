@@ -35,7 +35,7 @@ class App < Roda
   plugin :sessions, secret: Config.get[:secret]
   plugin :i18n, translations: Config.get[:i18n][:translations]
 
-  def db = config[:deps][:db]
+  def db = Initializers::DB::Conn.get
   def config = @config ||= Config.get
   def html = @html ||= Views::Html.instance
   def self.branch(args, &) = hash_branch(args, &)

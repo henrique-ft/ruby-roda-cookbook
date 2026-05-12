@@ -9,7 +9,7 @@ gem "zeitwerk"
 
 # Database
 gem "sequel"
-gem "sqlite3"
+gem "pg"
 # gem 'jdbc-sqlite3'
 
 # Web Server
@@ -22,6 +22,9 @@ gem "puma"
 gem "oj"
 # gem 'sequel_pg'
 # gem 'async'
+
+# CLI
+gem 'dry-cli'
 
 # Misc
 gem 'html_slice'

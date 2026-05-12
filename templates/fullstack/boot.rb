@@ -26,5 +26,5 @@ require "debug" if Config.not_production?
 
 Oj.mimic_JSON
 
-# Deps
+# Initializer
 Initializers::DB::Conn.init

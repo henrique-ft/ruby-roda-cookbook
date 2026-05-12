@@ -6,8 +6,7 @@ module Config
         environment:,
         i18n: {translations: ["app/config/locales"]},
         db: {
-          conn: Initializers::DB::Conn.get,
-          name: "app"
+          url: not_production? ? "postgres://dev:dev@localhost:5432/app_#{environment}" : ENV["DATABASE_URL"],
         }
       }
     end

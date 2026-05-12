@@ -10,6 +10,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     drb (2.2.3)
+    dry-cli (1.4.1)
     erb (6.0.4)
     ffi (1.17.4)
     ffi (1.17.4-arm64-darwin)
@@ -52,7 +53,6 @@ GEM
     logger (1.7.0)
     lumberjack (1.4.2)
     method_source (1.1.0)
-    mini_portile2 (2.8.9)
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
@@ -72,6 +72,10 @@ GEM
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
+    pg (1.6.3)
+    pg (1.6.3-arm64-darwin)
+    pg (1.6.3-x86_64-darwin)
+    pg (1.6.3-x86_64-linux)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -140,8 +144,6 @@ GEM
     singleton (0.3.0)
     spoon (0.0.6)
       ffi
-    sqlite3 (2.8.1)
-      mini_portile2 (~> 2.8.0)
     standard (1.54.0)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
@@ -172,18 +174,19 @@ PLATFORMS
 
 DEPENDENCIES
   debug
+  dry-cli
   guard-puma
   html_slice
   minitest
   minitest-hooks
   oj
+  pg
   puma
   rack-test
   roda
   roda-i18n
   sequel
   singleton
-  sqlite3
   standard
   zeitwerk
 

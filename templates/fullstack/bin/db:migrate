@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-
-require_relative "../boot"
-Sequel.extension :migration
-
-db = Initializers::DB::Conn.get
-Sequel::Migrator.run(db, 'db/migrations')
