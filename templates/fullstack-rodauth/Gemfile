@@ -15,7 +15,7 @@ gem "mail"
 # Database
 gem "sequel"
 gem "pg"
-#gem "sequel_pg"
+# gem "sequel_pg"
 # gem 'jdbc-sqlite3'
 
 # Web Server
@@ -29,11 +29,11 @@ gem "oj"
 # gem 'async'
 
 # CLI
-gem 'dry-cli'
+gem "dry-cli"
 
 # Misc
-gem 'html_slice'
-gem 'singleton'
+gem "html_slice"
+gem "singleton"
 
 group :development do
   gem "guard-puma"

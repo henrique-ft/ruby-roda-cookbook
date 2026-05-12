@@ -1,7 +1,6 @@
 Sequel.migration do
   change do
-    self.extension :date_arithmetic
-    db = self
+    extension :date_arithmetic
 
     deadline_opts = proc do |days|
       {null: false, default: Sequel.date_add(Sequel::CURRENT_TIMESTAMP, days: days)}
@@ -12,7 +11,7 @@ Sequel.migration do
       Integer :id, primary_key: true
       String :name, null: false, unique: true
     end
-    from(:account_statuses).import([:id, :name], [[1, 'Unverified'], [2, 'Verified'], [3, 'Closed']])
+    from(:account_statuses).import([:id, :name], [[1, "Unverified"], [2, "Verified"], [3, "Closed"]])
 
     # Accounts base table
     create_table(:accounts) do
@@ -47,7 +46,7 @@ Sequel.migration do
       DateTime :email_last_sent, null: false, default: Sequel::CURRENT_TIMESTAMP
     end
 
-    user = get(Sequel.lit('current_user')).sub(/_password\z/, '')
+    user = get(Sequel.lit("current_user")).sub(/_password\z/, "")
     run "REVOKE ALL ON account_password_hashes FROM public"
     run "GRANT INSERT, UPDATE, DELETE ON account_password_hashes TO #{user}"
     run "GRANT SELECT(id) ON account_password_hashes TO #{user}"
@@ -59,7 +58,7 @@ Sequel.migration do
       :account_password_reset_keys,
       :account_verification_keys,
       :accounts,
-      :account_statuses,
+      :account_statuses
     )
   end
 end

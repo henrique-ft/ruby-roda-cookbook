@@ -12,7 +12,7 @@ module Views
 
     def hello
       html_slice do
-        tag(:p, 'hello')
+        tag(:p, "hello")
       end
     end
   end

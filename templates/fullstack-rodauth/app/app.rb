@@ -37,7 +37,7 @@ class App < Roda
     password_hash_table :account_password_hashes
     use_database_authentication_functions? false
     login_column :email
-    #base_url "http://localhost:9292"
+    # base_url "http://localhost:9292"
 
     hmac_secret ENV["RODAUTH_HMAC_SECRET"]
   end
