@@ -28,6 +28,21 @@ class App < Roda
   end
   # CSRF Protection
   plugin :route_csrf
+  # Authentication
+  plugin :rodauth do
+    enable :login, :logout, :create_account
+    db DB
+
+    accounts_table :accounts
+    password_hash_table :account_password_hashes
+    use_database_authentication_functions? false
+
+    login_column :email
+
+    base_url "http://localhost:9292"
+
+    hmac_secret ENV["RODAUTH_HMAC_SECRET"]
+  end
   # Other
   plugin :common_logger
   plugin :flash
@@ -35,15 +50,18 @@ class App < Roda
   plugin :sessions, secret: Config.get[:secret]
   plugin :i18n, translations: Config.get[:i18n][:translations]
 
-  def db = Initializers::DB::Conn.get
   def config = @config ||= Config.get
   def html = @html ||= Views::Html.instance
   def self.branch(args, &) = hash_branch(args, &)
 
   route do |r|
+    r.rodauth
     r.hash_branches
+    rodauth.require_authentication
 
-    r.root { t.hello.message }
+    r.root do
+      "#{t.hello.message}: #{rodauth.account![:email]}"
+    end
   end
 
   error do |e|

@@ -7,6 +7,10 @@ gem "roda"
 gem "roda-i18n"
 gem "zeitwerk"
 
+# Authentication
+gem "rodauth"
+gem "bcrypt"
+
 # Database
 gem "sequel"
 gem "pg"
