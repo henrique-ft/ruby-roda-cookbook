@@ -30,16 +30,14 @@ class App < Roda
   plugin :route_csrf
   # Authentication
   plugin :rodauth do
-    enable :login, :logout, :create_account
+    enable :login, :logout, :create_account, :verify_account
     db DB
 
     accounts_table :accounts
     password_hash_table :account_password_hashes
     use_database_authentication_functions? false
-
     login_column :email
-
-    base_url "http://localhost:9292"
+    #base_url "http://localhost:9292"
 
     hmac_secret ENV["RODAUTH_HMAC_SECRET"]
   end

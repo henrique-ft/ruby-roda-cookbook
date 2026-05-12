@@ -10,10 +10,12 @@ gem "zeitwerk"
 # Authentication
 gem "rodauth"
 gem "bcrypt"
+gem "mail"
 
 # Database
 gem "sequel"
 gem "pg"
+#gem "sequel_pg"
 # gem 'jdbc-sqlite3'
 
 # Web Server
@@ -24,7 +26,6 @@ gem "puma"
 
 # Performance
 gem "oj"
-# gem 'sequel_pg'
 # gem 'async'
 
 # CLI
