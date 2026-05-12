@@ -1,0 +1,114 @@
+#!/usr/bin/env ruby
+
+require_relative "../boot"
+require "dry/cli"
+
+module CLI
+  extend Dry::CLI::Registry
+
+  class Version < Dry::CLI::Command
+    desc "Print version"
+
+    def call(*)
+      puts '0.0.1'
+    end
+  end
+
+  class DBMigrate < Dry::CLI::Command
+    desc "Migrate the database"
+
+    argument :target, desc: "Set the target version to migrate (https://sequel.jeremyevans.net/rdoc/classes/Sequel/Migrator.html)"
+
+    def call(target: nil, **)
+      Sequel.extension :migration
+
+      db = Initializers::DB::Conn.get
+      if target
+        Sequel::Migrator.run(db, 'db/migrations', target: target.to_i)
+      else
+        Sequel::Migrator.run(db, 'db/migrations')
+      end
+    end
+  end
+
+  class Console < Dry::CLI::Command
+    desc "Open a console with application context"
+
+    def call(*)
+      system('irb -r ./boot.rb')
+    end
+  end
+
+  class Lint < Dry::CLI::Command
+    desc "Run lint"
+
+    def call(*)
+      system('bundle exec standardrb')
+    end
+  end
+
+  class LintFix < Dry::CLI::Command
+    desc "Auto fix lint warnings"
+
+    def call(*)
+      system('bundle exec standardrb --fix')
+    end
+  end
+
+  class Test < Dry::CLI::Command
+    desc "Run tests"
+
+    def call(*)
+      system('RACK_ENV=test bundle exec minitest spec/')
+    end
+  end
+
+  class Dev < Dry::CLI::Command
+    desc "Exec development server"
+
+    def call(*)
+      system('RACK_ENV=development bundle exec puma')
+    end
+  end
+
+  class DevWatch < Dry::CLI::Command
+    desc "Exec development server watching for changes"
+
+    def call(*)
+      system('RACK_ENV=development bundle exec guard')
+    end
+  end
+
+  class DevAssets < Dry::CLI::Command
+    desc "Watch and compile assets"
+
+    def call(*)
+      system('npm i && npm run build:watch')
+    end
+  end
+
+  class Prod < Dry::CLI::Command
+    desc "Watch and compile assets"
+
+    def call(*)
+      if ENV['DATABASE_URL'] == nil
+        puts 'DATABASE_URL is empty'
+      else
+        system('RUBYOPT=--yjit RUBY_YJIT_ENABLE=1 RACK_ENV=production bundle exec puma --port 4000')
+      end
+    end
+  end
+
+  register "version", Version, aliases: ['v', '-v', '--version']
+  register "db:migrate", DBMigrate
+  register "console", Console, aliases: ['c']
+  register "lint", Lint
+  register "lint:fix", LintFix
+  register "test", Test
+  register "dev", Dev
+  register "dev:watch", DevWatch
+  register "dev:assets", DevAssets
+  register "prod", Prod
+end
+
+Dry::CLI.new(CLI).call
