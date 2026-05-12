@@ -1,18 +1,18 @@
 module Views
   class Html
-    include Singleton
     include HtmlSlice
 
     # for more component classes
     attr_reader :foods
 
-    def initialize
+    def initialize(t)
+      @t = t
       @foods = Views::Foods::Html.new
     end
 
-    def hello(t)
+    def hello
       html_slice do
-        tag(:p, t.hello.message)
+        tag(:p, @t.hello.message)
       end
     end
   end
