@@ -1,0 +1,56 @@
+class App < Roda
+  # Routing
+  # plugin :hash_branch_view_subdir
+  plugin :autoload_hash_branches
+  autoload_hash_branch_dir("./app/routes")
+  plugin :all_verbs
+  plugin :not_found
+  # Rendering
+  plugin :partials, views: "app/views"
+  plugin :content_for, append: false
+  plugin :halt
+  plugin :json
+  plugin :exception_page
+  # Request / Response
+  plugin :caching
+  plugin :cookies
+  plugin :default_headers
+  plugin :content_security_policy do |csp|
+    # csp.default_src :none
+    # csp.img_src :self
+    # csp.style_src :self
+    # csp.script_src :self
+    # csp.font_src :self
+    # csp.form_action :self
+    # csp.base_uri :none
+    # csp.frame_ancestors :none
+    # csp.block_all_mixed_content
+  end
+  # CSRF Protection
+  plugin :route_csrf
+  # Other
+  plugin :common_logger
+  plugin :flash
+  plugin :json_parser
+  plugin :sessions, secret: Config.get[:secret]
+  plugin :i18n, translations: Config.get[:i18n][:translations]
+
+  def db = Initializers::DB::Conn.get
+  def config = @config ||= Config.get
+  def html = @html ||= Views::Html.instance
+  def self.branch(args, &) = hash_branch(args, &)
+
+  route do |r|
+    r.hash_branches
+
+    r.root { t.hello.message }
+  end
+
+  error do |e|
+    next exception_page(e, css_file: "/public/exception_page.css") if Config.not_production?
+  end
+
+  not_found do
+    "not found"
+  end
+end
