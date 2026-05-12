@@ -47,7 +47,7 @@ class App < Roda
   end
 
   error do |e|
-    next exception_page(e, css_file: "/public/exception_page.css") if config[:environment] == "development"
+    next exception_page(e, css_file: "/public/exception_page.css") if Config.not_production?
   end
 
   not_found do
