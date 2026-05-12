@@ -28,6 +28,7 @@ Oj.mimic_JSON
 
 # Initializers
 Initializers::DB::Conn.init
+Initializers::Mailer.init
 
 # Consts
 DB = Initializers::DB::Conn.get
