@@ -11,7 +11,7 @@ class App
     r.get "info" do
       @foods = Food.select(:name, :protein, :calories, :fat, :carbohydrate, :fiber)
 
-      view("foods/info")
+      view 'info'
     end
   end
 end

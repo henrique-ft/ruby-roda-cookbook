@@ -1,11 +1,12 @@
 class App < Roda
   # Routing
-  # plugin :hash_branch_view_subdir
+  plugin :hash_branch_view_subdir
   plugin :autoload_hash_branches
   autoload_hash_branch_dir("./app/routes")
   plugin :all_verbs
   plugin :not_found
   # Rendering
+  plugin :render, layout: "./layout"
   plugin :partials, views: "app/views"
   plugin :content_for, append: false
   plugin :halt
