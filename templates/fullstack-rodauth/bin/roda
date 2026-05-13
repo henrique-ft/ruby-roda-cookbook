@@ -67,7 +67,7 @@ module CLI
     desc "Exec development server"
 
     def call(*)
-      system('RACK_ENV=development bundle exec puma')
+      system('RACK_ENV=development bundle exec puma --port 4000')
     end
   end
 
