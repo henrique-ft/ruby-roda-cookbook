@@ -19,3 +19,7 @@ guard "puma" do
   watch("Gemfile.lock")
   watch(%r{^app|i18n|public/.*})
 end
+
+guard 'livereload' do
+  watch(%r{^app|i18n|public/.*})
+end

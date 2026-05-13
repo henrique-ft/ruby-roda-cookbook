@@ -37,10 +37,12 @@ gem "singleton"
 
 group :development do
   gem "guard-puma"
+  gem 'guard-livereload'
+  gem 'rack-livereload'
+  gem "rack-test"
   gem "debug"
-  # gem "pry"
+  gem 'base64'
   gem "standard"
   gem "minitest"
   gem "minitest-hooks"
-  gem "rack-test"
 end

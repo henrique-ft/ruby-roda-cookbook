@@ -75,7 +75,7 @@ module CLI
     desc "Exec development server watching for changes"
 
     def call(*)
-      system('RACK_ENV=development bundle exec guard')
+      system('RACK_ENV=development bundle exec guard init livereload')
     end
   end
 
