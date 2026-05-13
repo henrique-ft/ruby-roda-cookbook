@@ -3,8 +3,6 @@ require "rack/test"
 require "minitest/autorun"
 require "minitest/hooks/default"
 
-DB = Config.get[:db][:conn]
-
 class Minitest::HooksSpec
   include Rack::Test::Methods
 
