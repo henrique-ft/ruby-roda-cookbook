@@ -6,7 +6,7 @@ describe "hello" do
     Food.create(name: "world")
     # debugger
 
-    _(Food.count).must_equal 2
+    expect(Food.count).to eq(2)
   end
 
   it "test requests" do

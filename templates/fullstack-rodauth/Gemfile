@@ -43,6 +43,5 @@ group :development do
   gem "debug"
   gem 'base64'
   gem "standard"
-  gem "minitest"
-  gem "minitest-hooks"
+  gem "rspec"
 end

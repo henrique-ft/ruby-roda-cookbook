@@ -60,7 +60,7 @@ module CLI
     desc "Run tests"
 
     def call(*)
-      system('RACK_ENV=test bundle exec minitest spec/')
+      system('RACK_ENV=test bundle exec rspec')
     end
   end
 
@@ -194,7 +194,7 @@ module CLI
         <<~RUBY
           it "responds to #{method.upcase} /#{branch_name}/#{name}" do
             #{method} "/#{branch_name}/#{name}"
-            _(last_response.status).must_equal 200
+            expect(last_response.status).to eq(200)
           end
         RUBY
       end.map { |s| s.each_line.map { |l| "  #{l}" }.join }.join("
