@@ -1,10 +1,6 @@
 class App
   branch "foods" do |r|
     r.get "api" do
-      {foods: Food.select(:name, :protein, :calories, :fat, :carbohydrate, :fiber).map(&:to_hash)}
-    end
-
-    r.get "api-all" do
       {foods: Food.all}
     end
 

@@ -11,40 +11,10 @@ body {
   <body>
     <%= yield %>
 
-    <!-- this is slow -->
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
-    <%#= partial 'shared/hello' %>
+    <!-- slow -->
     <%#= partial 'shared/hello' %>
 
-    <!-- this is 35% faster -->
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
-    <%= html.hello %>
+    <!-- 35% faster -->
     <%= html.hello %>
   </body>
 </html>

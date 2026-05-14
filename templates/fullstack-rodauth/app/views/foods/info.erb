@@ -1,6 +1,6 @@
 <h1>info</h1>
 
-<!-- this is slow -->
+<!-- slow -->
 <%# @foods.each do |food| %>
   <%#= food[:name] %>,
   <%#= food[:protein] %>,
@@ -10,5 +10,5 @@
   <%#= food[:fiber] %>,
 <%# end %>
 
-<!-- this is 30% faster -->
+<!-- 30% faster -->
 <%= html.foods.list(@foods) %>
