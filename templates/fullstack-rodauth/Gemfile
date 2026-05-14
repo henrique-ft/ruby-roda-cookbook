@@ -29,7 +29,7 @@ gem "oj"
 # gem 'async'
 
 # CLI
-gem "dry-cli"
+gem "rake"
 
 # Misc
 gem "html_slice"
