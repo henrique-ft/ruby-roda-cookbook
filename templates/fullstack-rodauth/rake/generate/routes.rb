@@ -5,15 +5,13 @@ module Generate
       @routes_list = routes_list
     end
 
-    def generate
+    def call
       if @branch_name.nil? || @branch_name.empty? || @routes_list.nil? || @routes_list.empty?
         puts "Usage: rake generate:routes[branch_name,route1,route2:method]"
         exit 1
       end
 
-      routes_array = @routes_list.split(',').map(&:strip)
-
-      routes_base_path = File.expand_path("./app/routes", __dir__)
+      routes_base_path = File.expand_path("../../app/routes", __dir__)
 
       # Ensure the directory structure exists
       full_path_dir = File.join(routes_base_path, File.dirname(@branch_name))
@@ -21,7 +19,7 @@ module Generate
 
       filename = File.join(routes_base_path, "#{@branch_name}.rb")
 
-      route_definitions = routes_array.map do |route_str|
+      route_definitions = @routes_list.map do |route_str|
         method, name = route_str.split(':', 2)
         if name.nil?
           name = method
@@ -42,7 +40,7 @@ module Generate
       puts "Created routes file: #{filename}"
 
       # Generate test file
-      test_base_path = File.expand_path("./spec/app/routes", __dir__)
+      test_base_path = File.expand_path("../../spec/app/routes", __dir__)
 
       # Ensure the directory structure exists for tests
       test_full_path_dir = File.join(test_base_path, File.dirname(@branch_name))
@@ -54,7 +52,7 @@ module Generate
       nesting_level = @branch_name.count('/')
       relative_spec_helper_path = "../" * (2 + nesting_level) + "spec_helper"
 
-      test_route_definitions = routes_array.map do |route_str|
+      test_route_definitions = @routes_list.map do |route_str|
         method, name = route_str.split(':', 2)
         if name.nil?
           name = method
