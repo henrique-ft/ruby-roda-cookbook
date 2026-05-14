@@ -7,9 +7,15 @@ gem "roda"
 gem "roda-i18n"
 gem "zeitwerk"
 
+# Authentication
+gem "rodauth"
+gem "bcrypt"
+gem "mail"
+
 # Database
 gem "sequel"
 gem "pg"
+# gem "sequel_pg"
 # gem 'jdbc-sqlite3'
 
 # Web Server
@@ -20,22 +26,22 @@ gem "puma"
 
 # Performance
 gem "oj"
-# gem 'sequel_pg'
 # gem 'async'
 
 # CLI
-gem 'dry-cli'
+gem "rake"
 
 # Misc
-gem 'html_slice'
-gem 'singleton'
+gem "html_slice"
+gem "singleton"
 
 group :development do
   gem "guard-puma"
-  gem "debug"
-  # gem "pry"
-  gem "standard"
-  gem "minitest"
-  gem "minitest-hooks"
+  gem 'guard-livereload'
+  gem 'rack-livereload'
   gem "rack-test"
+  gem "debug"
+  gem 'base64'
+  gem "standard"
+  gem "rspec"
 end

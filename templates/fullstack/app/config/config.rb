@@ -4,9 +4,9 @@ module Config
       {
         secret: ENV["SESSION_SECRET"] || 'UAe&&3q8<FQF8HiF)>l0hbPk£vBQ#IrYsoO}14k\l+-/gIU[j}l0hbPk£vBQ#IrY',
         environment:,
-        i18n: {translations: ["app/config/locales"]},
+        i18n: {translations: ["app/config/locales"], locale: ['pt-br', 'en']},
         db: {
-          url: not_production? ? "postgres://dev:dev@localhost:5432/app_#{environment}" : ENV["DATABASE_URL"],
+          url: not_production? ? "postgres://dev:dev@localhost:5432/app_#{environment}" : ENV["DATABASE_URL"]
         }
       }
     end

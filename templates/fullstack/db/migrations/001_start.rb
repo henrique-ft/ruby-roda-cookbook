@@ -43,15 +43,5 @@ Sequel.migration do
       String :created_at, null: false
       String :updated_at, null: false
     end
-
-    # food reports
-    create_table(:reports) do
-      primary_key :id
-
-      String :description
-
-      String :created_at, null: false
-      String :updated_at, null: false
-    end
   end
 end

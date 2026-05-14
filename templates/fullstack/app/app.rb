@@ -1,11 +1,12 @@
 class App < Roda
   # Routing
-  # plugin :hash_branch_view_subdir
+  plugin :hash_branch_view_subdir
   plugin :autoload_hash_branches
   autoload_hash_branch_dir("./app/routes")
   plugin :all_verbs
   plugin :not_found
   # Rendering
+  plugin :render, layout: "./layout"
   plugin :partials, views: "app/views"
   plugin :content_for, append: false
   plugin :halt
@@ -33,17 +34,39 @@ class App < Roda
   plugin :flash
   plugin :json_parser
   plugin :sessions, secret: Config.get[:secret]
-  plugin :i18n, translations: Config.get[:i18n][:translations]
+  plugin :i18n, **Config.get[:i18n]
+  # Authentication
+  plugin :rodauth do
+    enable :login, :logout, :create_account, :verify_account
+    db DB
 
-  def db = Initializers::DB::Conn.get
+    accounts_table :accounts
+    password_hash_table :account_password_hashes
+    use_database_authentication_functions? false
+    # base_url "http://localhost:9292"
+    login_column :email
+    # Redirect logged in users to the wherever login redirects to
+    already_logged_in { redirect "/" }
+
+    hmac_secret ENV["RODAUTH_HMAC_SECRET"]
+  end
+
   def config = @config ||= Config.get
-  def html = @html ||= Views::Html.instance
+  def html = @html ||= Views::Html.new(t)
   def self.branch(args, &) = hash_branch(args, &)
 
   route do |r|
+    r.rodauth
     r.hash_branches
+    #session[:locale] = 'pt-br'
 
-    r.root { t.hello.message }
+    #r.i18n_set_locale_from(:session)
+
+    rodauth.require_authentication
+
+    r.root do
+      "#{t.hello.message}: #{rodauth.account![:email]}"
+    end
   end
 
   error do |e|

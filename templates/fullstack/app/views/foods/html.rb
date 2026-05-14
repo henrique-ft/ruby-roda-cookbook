@@ -6,7 +6,7 @@ module Views
       def list(foods)
         html_slice do
           foods.each do |food|
-            tag(:p, food.name, style: 'color: gray')
+            tag(:p, food.name, style: "color: gray")
           end
         end
       end

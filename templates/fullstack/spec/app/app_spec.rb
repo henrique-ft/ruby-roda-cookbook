@@ -1,14 +1,17 @@
-require_relative '../spec_helper'
+require_relative "../spec_helper"
 
-describe 'hello' do
-  it 'test models' do
-    Food.create(name: 'hello')
-    Food.create(name: 'world')
-    debugger
+describe "hello" do
+  it "test models" do
+    Food.create(name: "hello")
+    Food.create(name: "world")
+    # debugger
 
-    _(Food.count).must_equal 2
+    expect(Food.count).to eq(2)
   end
 
-  it 'test requests' do
+  it "test requests" do
+    get '/'
+
+    expect(last_response.status).to eq(302)
   end
 end

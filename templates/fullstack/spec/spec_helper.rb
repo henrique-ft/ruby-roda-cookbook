@@ -1,31 +1,19 @@
+# frozen_string_literal: true
+
+ENV["RACK_ENV"] = "test"
+
 require_relative "../boot"
-require 'rack/test'
-require "minitest/autorun"
-require 'minitest/hooks/default'
+require "rack/test"
+require "rspec"
 
-DB = Config.get[:db][:conn]
+RSpec.configure do |config|
+  config.include Rack::Test::Methods
 
-class Minitest::HooksSpec
-  include Rack::Test::Methods
+  config.around(:each) do |example|
+    DB.transaction(rollback: :always, savepoint: true, auto_savepoint: true) { example.run }
+  end
 
   def app
     App.freeze.app
-  end
-end
-
-class Minitest::HooksSpec
-  around(:all) do |&block|
-    DB.transaction(rollback: :always){super(&block)}
-  end
-
-  around do |&block|
-    DB.transaction(rollback: :always, savepoint: true, auto_savepoint: true){super(&block)}
-  end
-
-  def log
-    LOGGER.level = Logger::INFO
-    yield
-  ensure
-    LOGGER.level = Logger::FATAL
   end
 end

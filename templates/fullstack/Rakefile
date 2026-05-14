@@ -6,6 +6,10 @@ require "fileutils"
 require "sequel"
 require "sequel/extensions/migration"
 
+task :default do
+  system('rake -T')
+end
+
 # Version Task
 task :version do
   puts '0.0.1'
