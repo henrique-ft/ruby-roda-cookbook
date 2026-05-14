@@ -1,12 +1,12 @@
 body {
-  background-color: black;
+  background-color: #191b1c;
   color: white;
   padding: 1em;
   font-family: monospace;
 }
 
 a {
-  color: #be3a3a;
+  color: #ef4348;
 }
 
 .context {

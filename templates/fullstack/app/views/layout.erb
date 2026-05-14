@@ -1,20 +1,13 @@
 <html>
   <head>
     <meta charset='utf-8' />
-    <style>
-body {
-  background-color: black;
-  color: white;
-}
-    </style>
+    <link rel="stylesheet" type="text/css" href="/public/css/app.min.css">
   </head>
   <body>
+    <img src='/public/images/roda-project.png' />
+    <br>
+    <%= html.navbar %>
+
     <%= yield %>
-
-    <!-- slow -->
-    <%#= partial 'shared/hello' %>
-
-    <!-- 35% faster -->
-    <%= html.hello %>
   </body>
 </html>

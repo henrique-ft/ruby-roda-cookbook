@@ -12,7 +12,7 @@ function jsConfigFor(name) {
     bundle: true,
     minify: true,
     sourcemap: true,
-    outfile: `public/js/${name}.js`,
+    outfile: `public/js/${name}.min.js`,
   }
 }
 
@@ -21,7 +21,7 @@ function cssConfigFor(name) {
     entryPoints: [`app/assets/css/${name}.css`],
     bundle: true,
     minify: true,
-    outfile: `public/css/${name}.css`,
+    outfile: `public/css/${name}.min.css`,
   }
 }
 

@@ -3,16 +3,19 @@ module Views
     include HtmlSlice
 
     # for more component classes
-    attr_reader :foods
+    attr_reader :foo
 
     def initialize(t)
       @t = t
-      @foods = Views::Foods::Html.new
+      @foo = Views::Foo::Html.new
     end
 
-    def hello
+    def navbar
       html_slice do
-        tag(:p, "#{@t.hello.message} #{@t.foo.bar}")
+        div class: 'navbar' do
+          a 'home', href: '/'
+          a 'foo/bar', href: '/foo/bar'
+        end
       end
     end
   end
