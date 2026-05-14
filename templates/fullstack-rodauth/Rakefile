@@ -120,7 +120,7 @@ namespace :generate do
   end
 
   desc "Generate a Roda routes file. Usage: 'rake generate:routes[branch_name,route1,route2:method]'"
-  task :routes, [:branch_name] do |t, args|
-    Generate::Routes.new(args.branch_name, args.extras).call
+  task :routes, [:branch_name, :routes] do |t, args|
+    Generate::Routes.new(args.branch_name, [args.routes].concat(args.extras)).call
   end
 end
