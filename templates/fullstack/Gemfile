@@ -31,9 +31,11 @@ gem "oj"
 # CLI
 gem "rake"
 
+# Security
+# gem "rack-attack"
+
 # Misc
 gem "html_slice"
-gem "singleton"
 
 group :development do
   gem "guard-puma"
