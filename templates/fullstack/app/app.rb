@@ -6,6 +6,7 @@ class App < Roda
   plugin :all_verbs
   plugin :not_found
   # Rendering
+  plugin :partials, views: "app/views"
   plugin :render, layout: "./layout"
   plugin :content_for, append: false
   plugin :halt

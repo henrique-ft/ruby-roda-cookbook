@@ -123,7 +123,7 @@ namespace :g do
     puts "Created migration: #{filename}"
   end
 
-  desc "Generate a Roda routes file. Usage: 'rake generate:routes[branch_name,route1,route2:method]'"
+  desc "Generate routes and tests files. Usage: 'rake generate:routes[branch_name,route1,route2:method]'"
   task :routes, [:branch_name, :routes] do |t, args|
     Generate::Routes.new(args.branch_name, [args.routes].concat(args.extras)).call
   end
