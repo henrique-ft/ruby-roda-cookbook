@@ -20,7 +20,6 @@ module Generate
           method = "get" # Default to GET if no method is specified
         end
         if method === "get" && generate_views?
-          generate_views
           "    r.#{method} \"#{name}\" do\n      view('#{name}')\n    end"
         else
           "    r.#{method} \"#{name}\" do\n    end"
@@ -38,8 +37,28 @@ module Generate
       File.write(filename, content)
       puts "Created routes file: #{filename}"
 
-      generate_tests
       generate_views if generate_views?
+      generate_tests
+    end
+
+    def generate_views
+      views_base_path = File.expand_path("../../app/views", __dir__)
+      branch_views_dir = File.join(views_base_path, @branch_name)
+      FileUtils.mkdir_p(branch_views_dir) # Ensure the branch-specific view directory exists
+
+      @routes_list.each do |route_str|
+        method, name = route_str.split(':', 2)
+        if name.nil?
+          name = method
+          method = "get" # Default to GET if no method is specified
+        end
+
+        if method == "get"
+          view_filename = File.join(branch_views_dir, "#{name}.erb")
+          File.write(view_filename, "")
+          puts "Created view file: #{view_filename}"
+        end
+      end
     end
 
     def generate_tests
@@ -79,9 +98,6 @@ module Generate
 
       File.write(test_filename, test_content)
       puts "Created test file: #{test_filename}"
-    end
-
-    def generate_views
     end
 
     def generate_views?
