@@ -11,13 +11,7 @@ module Generate
         exit 1
       end
 
-      routes_base_path = File.expand_path("../../app/routes", __dir__)
-
-      # Ensure the directory structure exists
-      full_path_dir = File.join(routes_base_path, File.dirname(@branch_name))
-      FileUtils.mkdir_p(full_path_dir) unless File.directory?(full_path_dir)
-
-      filename = File.join(routes_base_path, "#{@branch_name}.rb")
+      filename = File.join(ensure_and_get_path("../../app/routes"), "#{@branch_name}.rb")
 
       route_definitions = @routes_list.map do |route_str|
         method, name = route_str.split(':', 2)
@@ -25,7 +19,12 @@ module Generate
           name = method
           method = "get" # Default to GET if no method is specified
         end
-        "    r.#{method} \"#{name}\" do\n    end"
+        if method === "get" && generate_views?
+          generate_views
+          "    r.#{method} \"#{name}\" do\n      view('#{name}')\n    end"
+        else
+          "    r.#{method} \"#{name}\" do\n    end"
+        end
       end.join("\n\n")
 
       content = <<~RUBY
@@ -39,14 +38,16 @@ module Generate
       File.write(filename, content)
       puts "Created routes file: #{filename}"
 
+      generate_tests
+      generate_views if generate_views?
+    end
+
+    def generate_tests
       # Generate test file
-      test_base_path = File.expand_path("../../spec/app/routes", __dir__)
-
-      # Ensure the directory structure exists for tests
-      test_full_path_dir = File.join(test_base_path, File.dirname(@branch_name))
-      FileUtils.mkdir_p(test_full_path_dir) unless File.directory?(test_full_path_dir)
-
-      test_filename = File.join(test_base_path, "#{@branch_name}_spec.rb")
+      test_filename = File.join(
+        ensure_and_get_path("../../spec/app/routes"),
+        "#{@branch_name}_spec.rb"
+      )
 
       # Calculate relative path to spec_helper.rb
       nesting_level = @branch_name.count('/')
@@ -78,6 +79,18 @@ module Generate
 
       File.write(test_filename, test_content)
       puts "Created test file: #{test_filename}"
+    end
+
+    def ensure_and_get_path(path)
+      base_path = File.expand_path("../../spec/app/routes", __dir__)
+      full_path_dir = File.join(base_path, File.dirname(@branch_name))
+      FileUtils.mkdir_p(full_path_dir) unless File.directory?(full_path_dir)
+
+      base_path
+    end
+
+    def generate_views?
+      @generate_views ||= Dir.exist?("../../app/views")
     end
   end
 end
