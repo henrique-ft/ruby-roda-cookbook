@@ -81,16 +81,19 @@ module Generate
       puts "Created test file: #{test_filename}"
     end
 
+    def generate_views
+    end
+
+    def generate_views?
+      @generate_views ||= Dir.exist?(File.expand_path("../../app/views", __dir__))
+    end
+
     def ensure_and_get_path(path)
-      base_path = File.expand_path("../../spec/app/routes", __dir__)
+      base_path = File.expand_path(path, __dir__)
       full_path_dir = File.join(base_path, File.dirname(@branch_name))
       FileUtils.mkdir_p(full_path_dir) unless File.directory?(full_path_dir)
 
       base_path
-    end
-
-    def generate_views?
-      @generate_views ||= Dir.exist?("../../app/views")
     end
   end
 end
