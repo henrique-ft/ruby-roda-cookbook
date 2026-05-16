@@ -6,52 +6,20 @@ module Generate
     end
 
     def call
-      if @branch_name.nil? || @branch_name.empty? || @routes_list.nil? || @routes_list.empty?
-        puts "Usage: rake generate:routes[branch_name,route1,route2:method]"
-        exit 1
-      end
+      validate_arguments!
 
-      filename = File.join(ensure_and_get_path("../../app/routes"), "#{@branch_name}.rb")
-
-      route_definitions = @routes_list.map do |route_str|
-        method, name = route_str.split(':', 2)
-        if name.nil?
-          name = method
-          method = "get" # Default to GET if no method is specified
-        end
-        if method === "get" && generate_views?
-          "    r.#{method} \"#{name}\" do\n      view('#{name}')\n    end"
-        else
-          "    r.#{method} \"#{name}\" do\n    end"
-        end
-      end.join("\n\n")
-
-      content = <<~RUBY
-      class App
-        branch "#{@branch_name}" do |r|
-      #{route_definitions}
-        end
-      end
-      RUBY
-
-      File.write(filename, content)
-      puts "Created routes file: #{filename}"
-
-      generate_views if generate_views?
+      write_routes_file
+      generate_views if generate_views_enabled?
       generate_tests
     end
 
     def generate_views
       views_base_path = File.expand_path("../../app/views", __dir__)
       branch_views_dir = File.join(views_base_path, @branch_name)
-      FileUtils.mkdir_p(branch_views_dir) # Ensure the branch-specific view directory exists
+      FileUtils.mkdir_p(branch_views_dir)
 
       @routes_list.each do |route_str|
-        method, name = route_str.split(':', 2)
-        if name.nil?
-          name = method
-          method = "get" # Default to GET if no method is specified
-        end
+        method, name = parse_route_string(route_str)
 
         if method == "get"
           view_filename = File.join(branch_views_dir, "#{name}.erb")
@@ -62,22 +30,16 @@ module Generate
     end
 
     def generate_tests
-      # Generate test file
       test_filename = File.join(
         ensure_and_get_path("../../spec/app/routes"),
         "#{@branch_name}_spec.rb"
       )
 
-      # Calculate relative path to spec_helper.rb
       nesting_level = @branch_name.count('/')
       relative_spec_helper_path = "../" * (2 + nesting_level) + "spec_helper"
 
       test_route_definitions = @routes_list.map do |route_str|
-        method, name = route_str.split(':', 2)
-        if name.nil?
-          name = method
-          method = "get" # Default to GET if no method is specified
-        end
+        method, name = parse_route_string(route_str)
 
         <<~RUBY
         it "responds to #{method.upcase} /#{@branch_name}/#{name}" do
@@ -100,8 +62,53 @@ module Generate
       puts "Created test file: #{test_filename}"
     end
 
-    def generate_views?
-      @generate_views ||= Dir.exist?(File.expand_path("../../app/views", __dir__))
+    private
+
+    def validate_arguments!
+      if @branch_name.nil? || @branch_name.empty? || @routes_list.nil? || @routes_list.empty?
+        puts "Usage: rake generate:routes[branch_name,route1,route2:method]"
+        exit 1
+      end
+    end
+
+    def write_routes_file
+      filename = File.join(ensure_and_get_path("../../app/routes"), "#{@branch_name}.rb")
+
+      route_definitions = @routes_list.map do |route_str|
+        method, name = parse_route_string(route_str)
+        if method == "get" && generate_views_enabled?
+          "    r.#{method} \"#{name}\" do\n      view('#{name}')\n    end"
+        else
+          "    r.#{method} \"#{name}\" do\n    end"
+        end
+      end.join("\n\n")
+
+      content = <<~RUBY
+      class App
+        branch "#{@branch_name}" do |r|
+      #{route_definitions}
+        end
+      end
+      RUBY
+
+      File.write(filename, content)
+      puts "Created routes file: #{filename}"
+    end
+
+    def parse_route_string(route_str)
+      parts = route_str.split(':', 2)
+      if parts.length == 2
+        method = parts[1]
+        name = parts[0]
+      else
+        name = parts[0]
+        method = "get" # Default to GET if no method is specified
+      end
+      [method, name]
+    end
+
+    def generate_views_enabled?
+      @generate_views_enabled ||= Dir.exist?(File.expand_path("../../app/views", __dir__))
     end
 
     def ensure_and_get_path(path)
