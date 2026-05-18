@@ -58,9 +58,9 @@ class App < Roda
   route do |r|
     r.rodauth
     r.hash_branches
-    #session[:locale] = 'pt-br'
+    # session[:locale] = 'pt-br'
 
-    #r.i18n_set_locale_from(:session)
+    # r.i18n_set_locale_from(:session)
 
     rodauth.require_authentication
 

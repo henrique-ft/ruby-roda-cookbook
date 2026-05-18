@@ -12,9 +12,9 @@ module Views
 
     def navbar
       html_slice do
-        div class: 'navbar' do
-          a 'home', href: '/'
-          a 'foo/bar', href: '/foo/bar'
+        div class: "navbar" do
+          a "home", href: "/"
+          a "foo/bar", href: "/foo/bar"
         end
       end
     end

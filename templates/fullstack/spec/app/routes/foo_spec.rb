@@ -5,5 +5,4 @@ describe "Routes for foo" do
     get "/foo/bar"
     expect(last_response.status).to eq(200)
   end
-
 end

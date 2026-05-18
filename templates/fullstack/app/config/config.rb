@@ -6,7 +6,7 @@ module Config
         environment:,
         i18n: {
           translations: ["app/config/locales", "app/config/locales/foo"],
-          locale: ['pt-br', 'en']
+          locale: ["pt-br", "en"]
         },
         db: {
           url: not_production? ? "postgres://dev:dev@localhost:5432/app_#{environment}" : ENV["DATABASE_URL"]

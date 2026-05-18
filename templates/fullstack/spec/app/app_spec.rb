@@ -8,7 +8,7 @@ describe "hello" do
   end
 
   it "test requests" do
-    get '/'
+    get "/"
 
     expect(last_response.status).to eq(302)
   end

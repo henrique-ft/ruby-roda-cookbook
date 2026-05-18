@@ -20,6 +20,6 @@ guard "puma" do
   watch(%r{^app|i18n|public/.*})
 end
 
-guard 'livereload' do
+guard "livereload" do
   watch(%r{^app|i18n|public/.*})
 end
