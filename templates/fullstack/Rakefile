@@ -64,7 +64,13 @@ end
 
 # Development Assets Task
 desc "Watch and compile assets"
-task "dev:assets" do
+task :assets do
+  system("npm i && npm run build")
+end
+
+# Development Assets Task
+desc "Watch and compile assets"
+task "assets:watch" do
   system("npm i && npm run build:watch")
 end
 
