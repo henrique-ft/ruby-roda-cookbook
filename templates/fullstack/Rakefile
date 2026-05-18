@@ -125,7 +125,7 @@ namespace :g do
     puts "Created migration: #{filename}"
   end
 
-  desc "Generate routes and tests, also generate views if views directory is present. Usage: 'rake generate:routes[branch_name,route1,route2:method]'"
+  desc "Generate routes and tests, also generate views if views directory is present. Usage: 'rake generate:routes[branch_name,route1,method:route2]'"
   task :routes, [:branch_name, :routes] do |t, args|
     branch_name = args.branch_name
     routes_list = [args.routes].concat(args.extras)
