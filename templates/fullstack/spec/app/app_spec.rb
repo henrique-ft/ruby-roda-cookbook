@@ -2,11 +2,9 @@ require_relative "../spec_helper"
 
 describe "hello" do
   it "test models" do
-    Food.create(name: "hello")
-    Food.create(name: "world")
-    # debugger
+    Account.create(email: "foo@bar.com")
 
-    expect(Food.count).to eq(2)
+    expect(Account.count).to eq(1)
   end
 
   it "test requests" do

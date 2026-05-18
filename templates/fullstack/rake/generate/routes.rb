@@ -6,7 +6,10 @@ module Generate
     end
 
     def call
-      validate_arguments!
+      if @branch_name.nil? || @branch_name.empty? || @routes_list.nil? || @routes_list.empty?
+        puts "Usage: rake generate:routes[branch_name,route1,route2:method]"
+        exit 1
+      end
 
       write_routes_file
       generate_views if generate_views_enabled?
@@ -14,13 +17,10 @@ module Generate
     end
 
     def generate_views
-      views_base_path = File.expand_path("../../app/views", __dir__)
-      branch_views_dir = File.join(views_base_path, @branch_name)
+      branch_views_dir = File.join(File.expand_path("../../app/views", __dir__), @branch_name)
       FileUtils.mkdir_p(branch_views_dir)
-
       @routes_list.each do |route_str|
         method, name = parse_route_string(route_str)
-
         if method == "get"
           view_filename = File.join(branch_views_dir, "#{name}.erb")
           File.write(view_filename, "")
@@ -30,25 +30,17 @@ module Generate
     end
 
     def generate_tests
-      test_filename = File.join(
-        ensure_and_get_path("../../spec/app/routes"),
-        "#{@branch_name}_spec.rb"
-      )
-
+      test_filename = File.join(ensure_and_get_path("../../spec/app/routes"), "#{@branch_name}_spec.rb")
       nesting_level = @branch_name.count('/')
       relative_spec_helper_path = "../" * (2 + nesting_level) + "spec_helper"
 
       test_route_definitions = @routes_list.map do |route_str|
         method, name = parse_route_string(route_str)
-
-        <<~RUBY
-        it "responds to #{method.upcase} /#{@branch_name}/#{name}" do
-          #{method} "/#{@branch_name}/#{name}"
-          expect(last_response.status).to eq(200)
-        end
-        RUBY
-      end.map { |s| s.each_line.map { |l| "  #{l}" }.join }.join("
-                                                                 ")
+        "  it \"responds to #{method.upcase} /#{@branch_name}/#{name}\" do\n" \
+        "    #{method} \"/#{@branch_name}/#{name}\"\n" \
+        "    expect(last_response.status).to eq(200)\n" \
+        "  end"
+      end.join("\n")
 
       test_content = <<~RUBY
       require_relative "#{relative_spec_helper_path}"
@@ -57,30 +49,18 @@ module Generate
       #{test_route_definitions}
       end
       RUBY
-
       File.write(test_filename, test_content)
       puts "Created test file: #{test_filename}"
     end
 
     private
 
-    def validate_arguments!
-      if @branch_name.nil? || @branch_name.empty? || @routes_list.nil? || @routes_list.empty?
-        puts "Usage: rake generate:routes[branch_name,route1,route2:method]"
-        exit 1
-      end
-    end
-
     def write_routes_file
       filename = File.join(ensure_and_get_path("../../app/routes"), "#{@branch_name}.rb")
-
       route_definitions = @routes_list.map do |route_str|
         method, name = parse_route_string(route_str)
-        if method == "get" && generate_views_enabled?
-          "    r.#{method} \"#{name}\" do\n      view('#{name}')\n    end"
-        else
-          "    r.#{method} \"#{name}\" do\n    end"
-        end
+        view_line = (method == "get" && generate_views_enabled?) ? "\n      view('#{name}')" : ""
+        "    r.#{method} \"#{name}\" do#{view_line}\n    end"
       end.join("\n\n")
 
       content = <<~RUBY
@@ -90,20 +70,13 @@ module Generate
         end
       end
       RUBY
-
       File.write(filename, content)
       puts "Created routes file: #{filename}"
     end
 
     def parse_route_string(route_str)
-      parts = route_str.split(':', 2)
-      if parts.length == 2
-        method = parts[1]
-        name = parts[0]
-      else
-        name = parts[0]
-        method = "get" # Default to GET if no method is specified
-      end
+      name, method = route_str.split(':', 2)
+      method ||= "get"
       [method, name]
     end
 
