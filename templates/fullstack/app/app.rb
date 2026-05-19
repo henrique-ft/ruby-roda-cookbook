@@ -30,7 +30,7 @@ class App < Roda
   # CSRF Protection
   plugin :route_csrf
   # Other
-  plugin :common_logger, Initializers::Logger.get
+  plugin :common_logger, Providers::Logger.get
   plugin :flash
   plugin :json_parser
   plugin :sessions, secret: Config.get[:secret]

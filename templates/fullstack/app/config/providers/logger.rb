@@ -1,6 +1,6 @@
-module Initializers
+module Providers
   module Logger
-    def self.init
+    def self.boot
       @logger = ::Logger.new(STDOUT)
     end
 

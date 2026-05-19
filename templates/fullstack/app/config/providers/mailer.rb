@@ -1,6 +1,6 @@
-module Initializers
+module Providers
   module Mailer
-    def self.init
+    def self.boot
       ::Mail.defaults do
         if Config.not_production?
           delivery_method :logger

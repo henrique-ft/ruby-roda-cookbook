@@ -26,10 +26,10 @@ require "debug" if Config.not_production?
 
 Oj.mimic_JSON
 
-# Initializers
-Initializers::DB::Conn.init
-Initializers::Mailer.init
-Initializers::Logger.init
+# Providers
+Providers::DB::Conn.boot
+Providers::Mailer.boot
+Providers::Logger.boot
 
 # Consts
-DB = Initializers::DB::Conn.get
+DB = Providers::DB::Conn.get
