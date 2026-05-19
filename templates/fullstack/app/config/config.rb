@@ -1,7 +1,7 @@
 module Config
   class << self
     def get
-      {
+      @config ||= {
         secret: ENV["SESSION_SECRET"] || 'UAe&&3q8<FQF8HiF)>l0hbPk£vBQ#IrYsoO}14k\l+-/gIU[j}l0hbPk£vBQ#IrY',
         environment:,
         i18n: {
