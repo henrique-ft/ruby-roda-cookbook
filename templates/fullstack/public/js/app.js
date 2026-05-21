@@ -24,4 +24,3 @@
         ——
         Suppress this warning by adding a "data-turbo-suppress-warning" attribute to: %s
       `,s.outerHTML);s=s.parentElement}})();window.Turbo=Ut;Ne();})();
-//# sourceMappingURL=app.min.js.map
