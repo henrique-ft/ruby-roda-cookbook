@@ -1,0 +1,19 @@
+body {
+  background: black;
+  color: white;
+  margin: 1em 2em;
+  font-family: monospace;
+}
+
+a {
+  margin-right: 1em;
+}
+
+img {
+  width: 25%;
+  margin-bottom: 1em;
+}
+
+.navbar {
+  margin-bottom: 1em;
+}
