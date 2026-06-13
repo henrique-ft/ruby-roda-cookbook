@@ -10,6 +10,14 @@ module Views
       @foo = Views::Foo::Html.new
     end
 
+    def js_include_tag(entrypoint)
+      if Config.not_production?
+        return "<script src=\"/public/#{entrypoint}.js\" defer></script>"
+      end
+
+      "<script src=\"#{Config.get[:assets][:host]}/#{entrypoint}.js\" defer></script>"
+    end
+
     def navbar
       html_slice do
         div class: "navbar" do

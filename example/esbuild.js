@@ -16,7 +16,7 @@ function config() {
     outdir: "public",
     entryNames: isProduction ? '[name]-[hash]' : '[name]',
     plugins: isProduction ? [
-      manifestPlugin()
+      manifestPlugin({ shortNames: true })
     ] : [],
   }
 }

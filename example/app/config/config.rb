@@ -12,6 +12,9 @@ module Config
         },
         db: {
           url: not_production? ? "sqlite://db/#{environment}.db" : ENV["DATABASE_URL"]
+        },
+        assets: {
+          host: '/public'
         }
       }
     end

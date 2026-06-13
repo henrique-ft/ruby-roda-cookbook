@@ -43,16 +43,6 @@ class Example < Roda
   def config = @config ||= Config.get
   def html = @html ||= Views::Html.new(t)
 
-  def js_tag(filename)
-    final_filename = if Config.not_production?
-                       App::ASSET_MANIFEST.fetch(filename, filename)
-                     else
-                       filename
-                     end
-
-    "<script src=\"/js/#{final_filename}\" defer></script>"
-  end
-
   route do |r|
     r.hash_branches
     # session[:locale] = 'pt-br'
