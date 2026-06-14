@@ -3,12 +3,16 @@ const manifestPlugin = require('esbuild-plugin-manifest');
 const isWatchMode = process.argv.includes('--watch');
 const isProduction = process.env.RACK_ENV === 'production';
 
-const assetsEntryPoints = [
-  'js/app.js',
-  'css/app.css',
-]
+const jsEntryPoints = ['app']
+const cssEntryPoints = ['app']
 
 function config() {
+  const assetsEntryPoints =
+    jsEntryPoints.map((e) => `js/${e}.js`)
+    .concat(
+      cssEntryPoints.map((e) => `css/${e}.css`)
+    )
+
   return {
     entryPoints: assetsEntryPoints.map((name) => `app/assets/${name}`),
     bundle: true,
