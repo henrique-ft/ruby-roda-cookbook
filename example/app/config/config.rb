@@ -2,7 +2,7 @@ module Config
   class << self
     def get
       @config ||= {
-        secret: ENV["SESSION_SECRET"] || 'DEV-ONLY-8<FQF8HiF)>l0hbPk£vBQ#IrYsoO}14k\l+-/gIU[j}l0hbPk£vBQ#IrY',
+        secret: 'DEV-ONLY-8<FQF8HiF)>l0hbPk£vBQ#IrYsoO}14k\l+-/gIU[j}l0hbPk£vBQ#IrY',
         environment:,
         hmac_secret: ENV["RODAUTH_HMAC_SECRET"] || 'DEV-ONLY',
         jwt_secret: ENV["JWT_SECRET"] || 'DEV-ONLY',
@@ -11,10 +11,10 @@ module Config
           locale: ["en", "pt-br"]
         },
         db: {
-          url: not_production? ? "sqlite://db/#{environment}.db" : ENV["DATABASE_URL"]
+          url: "sqlite://db/#{environment}.db"
         },
         assets: {
-          host: '/public',
+          host: '/public/assets',
           manifest:
         }
       }
