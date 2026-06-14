@@ -14,12 +14,20 @@ module Config
           url: not_production? ? "sqlite://db/#{environment}.db" : ENV["DATABASE_URL"]
         },
         assets: {
-          host: '/public'
+          host: '/public',
+          manifest:
         }
       }
     end
 
     def not_production? = environment != "production"
+
+    def manifest
+      manifest_path = File.expand_path("../../public/assets/manifest.json", __dir__)
+      return JSON.parse(File.read(manifest_path)) if File.exist?(manifest_path)
+
+      {}
+    end
 
     def environment
       ENV["RACK_ENV"] || "development"

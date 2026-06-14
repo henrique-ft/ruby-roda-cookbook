@@ -13,7 +13,7 @@ function config() {
     entryPoints: assetsEntryPoints.map((name) => `app/assets/${name}`),
     bundle: true,
     minify: isProduction,
-    outdir: "public",
+    outdir: "public/assets",
     entryNames: isProduction ? '[name]-[hash]' : '[name]',
     plugins: isProduction ? [
       manifestPlugin({ shortNames: true })
@@ -27,7 +27,7 @@ async function build() {
       const ctx = await esbuild.context(config());
       await ctx.watch();
 
-      console.log(`Watching for css and js changes in '${entrypoints.join(', ')}'...`);
+      console.log(`Watching for css and js changes in '${assetsEntryPoints.join(', ')}'...`);
     } else {
       await esbuild.build(config());
 
